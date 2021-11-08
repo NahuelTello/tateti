@@ -1,5 +1,5 @@
 # tateti
-Juego del tatei desarrollado en Introducción a la Programación (FAI)
+Juego del tateti desarrollado en Introducción a la Programación (FAI)
 
 ## Materia 2021
 Introducción a la Programación
