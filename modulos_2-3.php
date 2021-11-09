@@ -10,21 +10,12 @@ include_once("tateti.php");
  * @return int
  */
 
-function seleccionarOpcion(){
-    echo "***** Menú de opciones ***** \n
-    1) Jugar al tateti \n
-    2) Mostrar un juego \n
-    3) Mostrar el primer juego ganador \n
-    4) Mostrar porcentaje de Juegos ganados \n
-    5) Mostrar resumen de jugador \n
-    6) Mostrar listado de juegos Ordenado por juegador O\n
-    7) Salir \n";
-    echo "Ingrese una opcion: ";
-    $opcion = trim(fgets(STDIN));
-    switch ($opcion) {
+function seleccionarOpcion($opcionMenu){
+    $opcionMenu = validarOpcion(menu());
+    switch ($opcionMenu) {
         case 1:
             echo "1) Jugar al tateti \n";
-            jugar();
+            echo $opcionMenu ."\n";
             /**
              * 1) Jugar al tateti: se inicia un juego de tateti solicitando los nombres de los jugadores. 
              * Luego de finalizar, los datos del juego deben ser guardados en una estructura de datos de juegos 
@@ -69,13 +60,28 @@ function seleccionarOpcion(){
             /**Sale del programa */
             break;
         default:
-            echo "Opcion incorrecta! \n";
+            echo "Opcion incorrecta! Intentalo nuevamente :) \n";
             break;
         }
-        return $opcion;
+        return $opcionMenu ;
     }
     
-    
+/**
+ * 
+ */
+function menu(){
+    echo "***** Menú de opciones ***** \n
+    1) Jugar al tateti \n
+    2) Mostrar un juego \n
+    3) Mostrar el primer juego ganador \n
+    4) Mostrar porcentaje de Juegos ganados \n
+    5) Mostrar resumen de jugador \n
+    6) Mostrar listado de juegos Ordenado por juegador O\n
+    7) Salir \n";
+    echo "Ingrese una opcion: ";
+    $opcion = trim(fgets(STDIN));
+    return $opcion;
+}
 
 /**
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
@@ -85,21 +91,22 @@ function seleccionarOpcion(){
  * @return int 
  */
 
-function validarOpcion($numeroValidar){
-    $res = false;
-    $validado = 0;
-    $numero = $numeroValidar;
+function validarOpcion($numeroValidar)
+{
+    $num = $numeroValidar;
+    $res = true;
     do {
-        if (($numero >= 1)&&($numero <= 7)) {
-            $validado = $numero;
-            $res = true;
+        if (($num >= 1) && ($num <= 7)) {
+            $res = false;
         } else {
-            $numero = validarOpcion(seleccionarOpcion());
-            /* $res = true; */
+            $num = seleccionarOpcion(menu());
+            $res = true;
         }
-    } while ($res == true);
-    
-    return $numero;
+    } while ($res == false);
+    echo "validado: ".$num;
+    return $num;
 }
+/* PRINCIPAL */
+$a = menu();
 
-validarOpcion(seleccionarOpcion());
+validarOpcion(seleccionarOpcion($a));
