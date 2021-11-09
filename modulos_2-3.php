@@ -19,34 +19,35 @@ function seleccionarOpcion(){
     7) Salir \n";
     echo "Ingrese una opcion: ";
     $opcion = trim(fgets(STDIN));
-    if ( validarOpcion($opcion) ) {
-        switch ($opcion) {
-            case 1:
-                echo "1) Jugar al tateti \n";
-                break;
-            case 2:
-                echo "2) Mostrar un juego \n";
-                break;
-            case 3:
-                echo "3) Mostrar el primer juego ganador \n";
-                break;
-            case 4:
-                echo "4) Mostrar porcentaje de Juegos ganados \n";
-                break;
-                case 5:
-                echo "5) Mostrar resumen de jugador \n";
-                break;
-                case 6:
-                echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+    $opcionValidada = validarOpcion($opcion);
+    
+    switch ($opcionValidada) {
+        case 1:
+            echo "1) Jugar al tateti \n";
             break;
-            case 7:
-                echo "7) Salir \n";
-                break;
+        case 2:
+            echo "2) Mostrar un juego \n";
+            break;
+        case 3:
+            echo "3) Mostrar el primer juego ganador \n";
+            break;
+        case 4:
+            echo "4) Mostrar porcentaje de Juegos ganados \n";
+            break;
+        case 5:
+            echo "5) Mostrar resumen de jugador \n";
+            break;
+        case 6:
+            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+            break;
+        case 7:
+            echo "7) Salir \n";
+            break;
         }
+        return $opcionValidada;
     }
     
-    return $opcion;
-}
+    
 
 /**
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
@@ -57,15 +58,9 @@ function seleccionarOpcion(){
  */
 
 function validarOpcion($opcionValidar){
-    $numeroValido = 0;
-    if (($opcionValidar >= 1) && ($opcionValidar < 7)) {
-        do{
-            echo "Desea ingresar nuevamente? ";
-            $respuesta = trim(fgets(STDIN));
-        } while ($respuesta == "si");
-        $numeroValido = $opcionValidar;
-    }
-    return $numeroValido;
+    
+    
+    
 }
 
 seleccionarOpcion();
