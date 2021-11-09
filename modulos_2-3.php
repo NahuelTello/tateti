@@ -76,14 +76,16 @@ function seleccionarOpcion(){
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
  * no es valido, la funcion se encarga de volver a pedirlo. Retorna un numero valido.
  * 
- * @param int $opcionValidar
+ * @param int $numeroValidar
  * @return int 
  */
 
-function validarOpcion($opcionValidar){
-    
-    
-    
+function validarOpcion($numeroValidar){
+    $numeroValidado = 0;
+    if (($numeroValidar >= 1)&& ($numeroValidar <= 7)) {
+        $numeroValidado = $numeroValidar;
+    }
+    return $numeroValidado;
 }
 
 seleccionarOpcion();
