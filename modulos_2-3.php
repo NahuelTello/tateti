@@ -81,12 +81,16 @@ function seleccionarOpcion(){
  */
 
 function validarOpcion($numeroValidar){
+    $res = true;
     $numeroValidado = 0;
-    do {
-        if (($numeroValidar >= 1)&& ($numeroValidar <= 7)) {
+    while ( $res !=  true ){
+        if (($numeroValidar >= 1) && ($numeroValidar <= 7)) {
             $numeroValidado = $numeroValidar;
-        } 
-    } while ($a <= 10);
+            $res = true;
+        } else {
+            $res = false;
+        }
+    }
     return $numeroValidado;
 }
 
