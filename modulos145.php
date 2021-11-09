@@ -18,3 +18,6 @@ function cargarJuegos ()
     return $historialJuegos;
 }
 echo "esto funca?";
+/**
+ * Nose, no lo probe xd
+ */

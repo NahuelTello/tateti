@@ -1,4 +1,6 @@
 <?php
+
+include_once("tateti.php");
 /**
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
  * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
@@ -19,10 +21,10 @@ function seleccionarOpcion(){
     7) Salir \n";
     echo "Ingrese una opcion: ";
     $opcion = trim(fgets(STDIN));
-    $opcionValidada = validarOpcion($opcion);
-    switch ($opcionValidada) {
+    switch ($opcion) {
         case 1:
             echo "1) Jugar al tateti \n";
+            jugar();
             /**
              * 1) Jugar al tateti: se inicia un juego de tateti solicitando los nombres de los jugadores. 
              * Luego de finalizar, los datos del juego deben ser guardados en una estructura de datos de juegos 
@@ -66,8 +68,11 @@ function seleccionarOpcion(){
             echo "7) Salir \n";
             /**Sale del programa */
             break;
+        default:
+            echo "Opcion incorrecta! \n";
+            break;
         }
-        return $opcionValidada;
+        return $opcion;
     }
     
     
@@ -81,17 +86,20 @@ function seleccionarOpcion(){
  */
 
 function validarOpcion($numeroValidar){
-    $res = true;
-    $numeroValidado = 0;
-    while ( $res !=  true ){
-        if (($numeroValidar >= 1) && ($numeroValidar <= 7)) {
-            $numeroValidado = $numeroValidar;
+    $res = false;
+    $validado = 0;
+    $numero = $numeroValidar;
+    do {
+        if (($numero >= 1)&&($numero <= 7)) {
+            $validado = $numero;
             $res = true;
         } else {
-            $res = false;
+            $numero = validarOpcion(seleccionarOpcion());
+            /* $res = true; */
         }
-    }
-    return $numeroValidado;
+    } while ($res == true);
+    
+    return $numero;
 }
 
-echo seleccionarOpcion();
+validarOpcion(seleccionarOpcion());
