@@ -82,10 +82,12 @@ function seleccionarOpcion(){
 
 function validarOpcion($numeroValidar){
     $numeroValidado = 0;
-    if (($numeroValidar >= 1)&& ($numeroValidar <= 7)) {
-        $numeroValidado = $numeroValidar;
-    }
+    do {
+        if (($numeroValidar >= 1)&& ($numeroValidar <= 7)) {
+            $numeroValidado = $numeroValidar;
+        } 
+    } while ($a <= 10);
     return $numeroValidado;
 }
 
-seleccionarOpcion();
+echo seleccionarOpcion();
