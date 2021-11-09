@@ -1,6 +1,25 @@
 <?php
 
 include_once("tateti.php");
+
+/**
+ * Muestra la lista del menu y lee la opcion de la misma, luego la retorna
+ * @param no tiene
+ * @return int
+ */
+function menu(){ //Ingresamos la opcion del menu
+    echo "***** Menú de opciones ***** \n
+    1) Jugar al tateti \n
+    2) Mostrar un juego \n
+    3) Mostrar el primer juego ganador \n
+    4) Mostrar porcentaje de Juegos ganados \n
+    5) Mostrar resumen de jugador \n
+    6) Mostrar listado de juegos Ordenado por juegador O\n
+    7) Salir \n";
+    echo "Ingrese una opcion: ";
+    $opcion = trim(fgets(STDIN));
+    return $opcion;
+}
 /**
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
  * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
@@ -11,11 +30,11 @@ include_once("tateti.php");
  */
 
 function seleccionarOpcion($opcionMenu){
-    $opcionMenu = validarOpcion(menu());
     switch ($opcionMenu) {
         case 1:
             echo "1) Jugar al tateti \n";
             echo $opcionMenu ."\n";
+            jugar();
             /**
              * 1) Jugar al tateti: se inicia un juego de tateti solicitando los nombres de los jugadores. 
              * Luego de finalizar, los datos del juego deben ser guardados en una estructura de datos de juegos 
@@ -66,22 +85,6 @@ function seleccionarOpcion($opcionMenu){
         return $opcionMenu ;
     }
     
-/**
- * 
- */
-function menu(){
-    echo "***** Menú de opciones ***** \n
-    1) Jugar al tateti \n
-    2) Mostrar un juego \n
-    3) Mostrar el primer juego ganador \n
-    4) Mostrar porcentaje de Juegos ganados \n
-    5) Mostrar resumen de jugador \n
-    6) Mostrar listado de juegos Ordenado por juegador O\n
-    7) Salir \n";
-    echo "Ingrese una opcion: ";
-    $opcion = trim(fgets(STDIN));
-    return $opcion;
-}
 
 /**
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
@@ -97,16 +100,14 @@ function validarOpcion($numeroValidar)
     $res = true;
     do {
         if (($num >= 1) && ($num <= 7)) {
-            $res = false;
+            $num;
         } else {
-            $num = seleccionarOpcion(menu());
-            $res = true;
+            $num = menu();
         }
-    } while ($res == false);
+    } while (($num >= 1) && ($num <= 7));
     echo "validado: ".$num;
     return $num;
 }
 /* PRINCIPAL */
-$a = menu();
-
-validarOpcion(seleccionarOpcion($a));
+$opcionSeleccionada = seleccionarOpcion(menu());
+validarOpcion($opcionSeleccionada);
