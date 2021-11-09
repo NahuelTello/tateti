@@ -8,18 +8,46 @@
  * @return int
  */
 
-function seleccionarOpcion($opcion){
+function seleccionarOpcion(){
+    echo "***** Menú de opciones ***** \n
+    1) Jugar al tateti \n
+    2) Mostrar un juego \n
+    3) Mostrar el primer juego ganador \n
+    4) Mostrar porcentaje de Juegos ganados \n
+    5) Mostrar resumen de jugador \n
+    6) Mostrar listado de juegos Ordenado por juegador O\n
+    7) Salir \n";
+    echo "Ingrese una opcion: ";
+    $opcion = trim(fgets(STDIN));
     switch ($opcion) {
-        case 'value':
+        case 1:
+            echo "1) Jugar al tateti \n";
+            break;
+        case 2:
+            echo "2) Mostrar un juego \n";# code...
+            break;
+        case 3:
+            echo "3) Mostrar el primer juego ganador \n";
             # code...
             break;
-        case 'value':
+        case 4:
+            echo "4) Mostrar porcentaje de Juegos ganados \n";
             # code...
             break;
-        default:
+        case 5:
+            echo "5) Mostrar resumen de jugador \n";
+            # code...
+            break;
+        case 6:
+            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+            # code...
+            break;
+        case 7:
+            echo "7) Salir \n";
             # code...
             break;
     }
+    return $opcion;
 }
 
 /**
@@ -31,5 +59,8 @@ function seleccionarOpcion($opcion){
  */
 
 function validarOpcion(){
-    
+
 }
+echo seleccionarOpcion( );
+
+
