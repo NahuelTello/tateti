@@ -439,10 +439,6 @@ function jugar()
         "puntosCirculo" => $puntosCirculo
     ];
 
-<<<<<<< HEAD
     return $juego;
 }
-=======
-echo "holaa";
 
->>>>>>> b7551ef8331c1c55257f76c9fe39ebc07873e61b
