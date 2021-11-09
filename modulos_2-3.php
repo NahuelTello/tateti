@@ -20,7 +20,6 @@ function seleccionarOpcion(){
     echo "Ingrese una opcion: ";
     $opcion = trim(fgets(STDIN));
     $opcionValidada = validarOpcion($opcion);
-    
     switch ($opcionValidada) {
         case 1:
             echo "1) Jugar al tateti \n";
