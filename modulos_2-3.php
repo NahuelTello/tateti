@@ -8,7 +8,7 @@
  * @return int
  */
 
-function seleccionarOpcion(){
+function seleccionarOpcion($opcion){
     echo "***** Menú de opciones ***** \n
     1) Jugar al tateti \n
     2) Mostrar un juego \n
@@ -17,8 +17,6 @@ function seleccionarOpcion(){
     5) Mostrar resumen de jugador \n
     6) Mostrar listado de juegos Ordenado por juegador O\n
     7) Salir \n";
-    echo "Ingrese una opcion: ";
-    $opcion = trim(fgets(STDIN));
     switch ($opcion) {
         case 1:
             echo "1) Jugar al tateti \n";
@@ -54,13 +52,24 @@ function seleccionarOpcion(){
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
  * no es valido, la funcion se encarga de volver a pedirlo. Retorna un numero valido.
  * 
- * @param int $numeroValidar
+ * @param int $opcionValidar
  * @return int 
  */
 
-function validarOpcion(){
-
+function validarOpcion($opcionValidar){
+    echo "Ingrese una opcion: ";
+    $opcionValidar = trim(fgets(STDIN));
+    if (($opcionValidar >= 1)&& ($opcionValidar < 7)) {
+        $numeroValido = 0;
+        do{
+            seleccionarOpcion($opcionValidar);
+            echo "Desea ingresar nuevamente? ";
+            $respuesta = trim(fgets(STDIN));
+        } while ($respuesta == "si");
+        $numeroValido = $opcionValidar;
+    }
+    return $numeroValido;
 }
-echo seleccionarOpcion( );
+
 
 
