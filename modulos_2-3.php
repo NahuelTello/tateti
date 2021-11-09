@@ -4,11 +4,11 @@
  * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
  * menu debe ser "Salir"
  * 
- * @param int $opcion
+ * @param no tiene
  * @return int
  */
 
-function seleccionarOpcion($opcion){
+function seleccionarOpcion(){
     echo "***** Menú de opciones ***** \n
     1) Jugar al tateti \n
     2) Mostrar un juego \n
@@ -17,34 +17,34 @@ function seleccionarOpcion($opcion){
     5) Mostrar resumen de jugador \n
     6) Mostrar listado de juegos Ordenado por juegador O\n
     7) Salir \n";
-    switch ($opcion) {
-        case 1:
-            echo "1) Jugar al tateti \n";
+    echo "Ingrese una opcion: ";
+    $opcion = trim(fgets(STDIN));
+    if ( validarOpcion($opcion) ) {
+        switch ($opcion) {
+            case 1:
+                echo "1) Jugar al tateti \n";
+                break;
+            case 2:
+                echo "2) Mostrar un juego \n";
+                break;
+            case 3:
+                echo "3) Mostrar el primer juego ganador \n";
+                break;
+            case 4:
+                echo "4) Mostrar porcentaje de Juegos ganados \n";
+                break;
+                case 5:
+                echo "5) Mostrar resumen de jugador \n";
+                break;
+                case 6:
+                echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
             break;
-        case 2:
-            echo "2) Mostrar un juego \n";# code...
-            break;
-        case 3:
-            echo "3) Mostrar el primer juego ganador \n";
-            # code...
-            break;
-        case 4:
-            echo "4) Mostrar porcentaje de Juegos ganados \n";
-            # code...
-            break;
-        case 5:
-            echo "5) Mostrar resumen de jugador \n";
-            # code...
-            break;
-        case 6:
-            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
-            # code...
-            break;
-        case 7:
-            echo "7) Salir \n";
-            # code...
-            break;
+            case 7:
+                echo "7) Salir \n";
+                break;
+        }
     }
+    
     return $opcion;
 }
 
@@ -57,12 +57,9 @@ function seleccionarOpcion($opcion){
  */
 
 function validarOpcion($opcionValidar){
-    echo "Ingrese una opcion: ";
-    $opcionValidar = trim(fgets(STDIN));
-    if (($opcionValidar >= 1)&& ($opcionValidar < 7)) {
-        $numeroValido = 0;
+    $numeroValido = 0;
+    if (($opcionValidar >= 1) && ($opcionValidar < 7)) {
         do{
-            seleccionarOpcion($opcionValidar);
             echo "Desea ingresar nuevamente? ";
             $respuesta = trim(fgets(STDIN));
         } while ($respuesta == "si");
@@ -71,5 +68,4 @@ function validarOpcion($opcionValidar){
     return $numeroValido;
 }
 
-
-
+seleccionarOpcion();
