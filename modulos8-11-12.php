@@ -21,3 +21,10 @@ function seleccionarSimbolo () {
     return $simbolo ;
 }
 $simboloFinal = seleccionarSimbolo() ; //Lo invoque para probar si funcionaba, Borrar despues
+
+
+/**
+ * Funcion 11 --> "Explicacion 3"
+ * Dada una colección de juegos y un símbolo (X o O) retorna la cantidad de juegos ganados por el símbolo ingresado por parámetro.
+ * 
+ */
