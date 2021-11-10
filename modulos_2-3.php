@@ -3,7 +3,9 @@
 include_once("tateti.php");
 
 /**
- * Muestra la lista del menu y lee la opcion de la misma, luego la retorna
+ * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
+ * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
+ * menu debe ser "Salir"
  * @param no tiene
  * @return int
  */
@@ -21,11 +23,9 @@ function menu(){ //Ingresamos la opcion del menu
     return $opcion;
 }
 /**
- * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
- * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
- * menu debe ser "Salir"
+ * Selecciona la opcion del menu
  * 
- * @param no tiene
+ * @param int $opcionMenu
  * @return int
  */
 
