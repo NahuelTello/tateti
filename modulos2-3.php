@@ -97,18 +97,6 @@ function seleccionarOpcion($opcionMenu){
  */
 
 function validarOpcion($numeroValidar){
-    $num = $numeroValidar;
-    $res = false;
-    do {
-        if (($num >= 1) && ($num <= 7)) {
-            $res = true;
-        } else {
-            $num = seleccionarOpcion(menu());
-            $res = false;
-        }
-    } while ($res == true);
-    return $num;
+    
 }
 /* PRINCIPAL- PRUEBA */
-$opcionSeleccionada = seleccionarOpcion(menu());
-validarOpcion($opcionSeleccionada);
