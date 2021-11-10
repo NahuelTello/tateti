@@ -107,7 +107,6 @@ function validarOpcion($numeroValidar){
             $res = false;
         }
     } while ($res == true);
-    /* echo "validado: ".$num; */
     return $num;
 }
 /* PRINCIPAL */
