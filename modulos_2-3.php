@@ -10,7 +10,7 @@ include_once("tateti.php");
  * @return int
  */
 function menu(){ //Ingresamos la opcion del menu
-    echo "***** Menú de opciones ***** \n
+    echo "Menú de opciones\n
     1) Jugar al tateti \n
     2) Mostrar un juego \n
     3) Mostrar el primer juego ganador \n
@@ -79,7 +79,9 @@ function seleccionarOpcion($opcionMenu){
             /**Sale del programa */
             break;
         default:
+            echo "-------------------------------------------\n";
             echo "Opcion incorrecta! Intentalo nuevamente :) \n";
+            echo "-------------------------------------------\n";
             break;
         }
         return $opcionMenu ;
@@ -94,8 +96,7 @@ function seleccionarOpcion($opcionMenu){
  * @return int 
  */
 
-function validarOpcion($numeroValidar)
-{
+function validarOpcion($numeroValidar){
     $num = $numeroValidar;
     $res = true;
     do {
