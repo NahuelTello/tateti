@@ -109,6 +109,6 @@ function validarOpcion($numeroValidar){
     } while ($res == true);
     return $num;
 }
-/* PRINCIPAL */
+/* PRINCIPAL- PRUEBA */
 $opcionSeleccionada = seleccionarOpcion(menu());
 validarOpcion($opcionSeleccionada);
