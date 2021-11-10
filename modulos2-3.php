@@ -33,8 +33,7 @@ function seleccionarOpcion($opcionMenu){
     switch ($opcionMenu) {
         case 1:
             echo "1) Jugar al tateti \n";
-            echo $opcionMenu ."\n";
-            jugar();
+            echo "Opcion seleccionada ".$opcionMenu ."\n";
             /**
              * 1) Jugar al tateti: se inicia un juego de tateti solicitando los nombres de los jugadores. 
              * Luego de finalizar, los datos del juego deben ser guardados en una estructura de datos de juegos 
@@ -43,6 +42,7 @@ function seleccionarOpcion($opcionMenu){
             break;
         case 2:
             echo "2) Mostrar un juego \n";
+            echo "Opcion seleccionada ".$opcionMenu ."\n";
             /**
              * 2) Mostrar un Juego: Se le solicita al usuario un número de juego y se muestra en pantalla con el siguiente formato:
              * Juego TATETI: <numero> (<empate| gano X | gano 0>)
@@ -98,15 +98,16 @@ function seleccionarOpcion($opcionMenu){
 
 function validarOpcion($numeroValidar){
     $num = $numeroValidar;
-    $res = true;
+    $res = false;
     do {
         if (($num >= 1) && ($num <= 7)) {
-            $num;
+            $res = true;
         } else {
-            $num = menu();
+            $num = seleccionarOpcion(menu());
+            $res = false;
         }
-    } while (($num >= 1) && ($num <= 7));
-    echo "validado: ".$num;
+    } while ($res == true);
+    /* echo "validado: ".$num; */
     return $num;
 }
 /* PRINCIPAL */
