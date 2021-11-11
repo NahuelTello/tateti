@@ -61,7 +61,11 @@ function iniciarMenu($opcionMenu){
             echo "Ingrese el nombre del jugador a buscar: ";
             $namePlayer = trim(fgets(STDIN));
             $res = primerVictoria(cargarJuegos(),$namePlayer);
-            echo "La primer victoria del jugador: ".$namePlayer. ". Es: " .$res;
+            if ($res == -1) {
+                echo "No tuvo ninguna victoria!";
+            } else {
+                echo "La primer victoria del jugador: ".$namePlayer. ". Es: " .$res;
+            }
             break;
         case 4:
             echo "4) Mostrar porcentaje de Juegos ganados \n";
