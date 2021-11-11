@@ -21,7 +21,7 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
     7) Salir \n";
     echo "Ingrese una opcion entre 1 y 7: " ;
     
-    $opcion = validarOpcion(1, 7) ; //Puedo poner como parametros formales directamente los numeros entre el rango que me pide??
+    $opcion = validarOpcion(1, 7) ; //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? //En realidad deberia pedirlo la misma funcion, osea lo ingresas por teclado
     return $opcion ;
 }
 
@@ -29,8 +29,8 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
  * Funcion 3 --> Explicacion 3
  * Solicita al usuario un numero entre un rango de valores. Si el numero ingresado
  * no es valido, la funcion se encarga de volver a pedirlo. Retorna un numero valido.
- * @param INT $numMin . El num min seria 1
- * @param INT $numMax . El num Max seria 7
+ * @param int $numMin . El num min seria 1
+ * @param int $numMax . El num Max seria 7
  */
 function validarOpcion ($numMin, $numMax) {
     //
@@ -40,3 +40,5 @@ function validarOpcion ($numMin, $numMax) {
 }
 
 $numeroMenu = seleccionarOpciones (); // Lo invoco para probar si anda, Despues BORRAR!!!
+
+/* Bien pensado Mili!! */
