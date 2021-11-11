@@ -39,3 +39,14 @@ function victoriasDeSimbolos ($coleccionJuegos, $simbolo) {
         
     }
 }
+
+
+/**
+ * Funcion 11 --> "Explicacion 3"
+ * Implementar una función sin retorno que, dada una colección de juegos, 
+ * muestre la colección de juegos ordenado por el nombre del jugador cuyo símbolo es O.
+ * @param array $coleccionDeJuegos
+ */
+function ordenaJugadoresO ($coleccionDeJuegos) {
+    
+}
