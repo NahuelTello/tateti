@@ -66,6 +66,7 @@ function iniciarMenu($opcionMenu){
             break;
         case 6:
             echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+            //Lo hace mili
             break;
         case 7:
             echo "7) Salir \n";

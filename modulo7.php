@@ -11,15 +11,11 @@
 
 function primerVictoria($coleccionJuegos,$nombreJugador){
 
-    $indiceJuegoGanado = 0;
-    
-    /* foreach ($coleccionJuegos as $indice => $elemento) {
-        if ( ) {
-            
-        } else {
-            $indiceJuegoGanado = -1 ;
-        }
-    } */
+    $primerJuegoGanado = 0;
+    $juegoEncontrado = true;
+    while (!$juegoEncontrado) {
+        
+    }
 
     return $indiceJuegoGanado;
 }
