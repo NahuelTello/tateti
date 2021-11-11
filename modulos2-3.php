@@ -19,8 +19,7 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
     6) Mostrar listado de juegos Ordenado por juegador O\n
     7) Salir \n";
     echo "Ingrese una opcion entre 1 y 7: " ;
-    
-    $opcion = validarOpcion(1, 7) ; //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? //En realidad deberia pedirlo la misma funcion, osea lo ingresas por teclado
+    $opcion = validarOpcion(1, 7) ; //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? 
     return $opcion ;
 }
 
