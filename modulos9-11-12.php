@@ -23,8 +23,19 @@ function seleccionarSimbolo () {
 $simboloFinal = seleccionarSimbolo() ; //Lo invoque para probar si funcionaba, Borrar despues
 
 
+
 /**
- * Funcion 11 --> "Explicacion 3"
+ * Funcion 10 --> "Explicacion 3"
  * Dada una colección de juegos y un símbolo (X o O) retorna la cantidad de juegos ganados por el símbolo ingresado por parámetro.
- * 
+ * @param array $coleccionJuegos
+ * @param STRING $simbolo
+ * @return int
  */
+function victoriasDeSimbolos ($coleccionJuegos, $simbolo) {
+    //INT $juegosGanadosSimbolo, $i, $cantElementosArray
+    $cantElementosArray = count($coleccionJuegos) ;
+    $juegosGanadosSimbolo = 0 ; // Cuenta de la cant de juegos ganados por el simbolo ingresado
+    for ($i=0; $i < $cantElementosArray ; $i++) { 
+        
+    }
+}
