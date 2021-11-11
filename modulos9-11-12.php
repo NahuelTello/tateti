@@ -36,9 +36,9 @@ function victoriasDeSimbolos ($coleccionJuegos, $simbolo) {
     $cantElementosArray = count($coleccionJuegos) ;
     $juegosGanadosSimbolo = 0 ; // Cuenta de la cant de juegos ganados por el simbolo ingresado
     for ($i=0; $i < $cantElementosArray ; $i++) {
-        if (($simbolo == "X") && ($coleccionJuegos[$i] ["puntosX"] > $coleccionJuegos[$i] ["puntosO"])){
+        if (($simbolo == "X") && ($coleccionJuegos[$i] ["puntosX"]  >  $coleccionJuegos[$i] ["puntosO"])){
             $juegosGanadosSimbolo = $juegosGanadosSimbolo + 1;
-        }elseif (($simbolo == "O") && ($coleccionJuegos[$i] ["puntosX"] < $coleccionJuegos[$i] ["puntosO"])) {
+        }elseif (($simbolo == "O") && ($coleccionJuegos[$i] ["puntosX"]  <  $coleccionJuegos[$i] ["puntosO"])) {
                 $juegosGanadosSimbolo = $juegosGanadosSimbolo + 1;
         }    
     }
@@ -56,5 +56,5 @@ echo "La cant de victorias del simbolo ". $simboloFinal . " es: " . $juegosGanad
  * @param array $ coleccionDeJuegos
  */
 function ordenaJugadoresO ( $coleccionDeJuegos) {
-    
+    //
 }
