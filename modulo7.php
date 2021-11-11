@@ -36,3 +36,6 @@ function primerVictoria($coleccionJuegosBuscados,$nombreJugadorBuscado){
 
     return $primerJuegoGanado;
 }
+
+//PRINCIPAL PRUEBA
+

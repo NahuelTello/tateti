@@ -2,6 +2,7 @@
 
 include_once("tateti.php");
 include_once("modulos145.php");
+include_once("modulo7.php");
 /**
  * funcion 2 <-- Explicacion 3
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
@@ -57,6 +58,10 @@ function iniciarMenu($opcionMenu){
             break;
         case 3:
             echo "3) Mostrar el primer juego ganador \n";
+            echo "Ingrese el nombre del jugador a buscar: ";
+            $namePlayer = trim(fgets(STDIN));
+            $res = primerVictoria(cargarJuegos(),$namePlayer);
+            echo "La primer victoria del jugador: ".$namePlayer. ". Es: " .$res;
             break;
         case 4:
             echo "4) Mostrar porcentaje de Juegos ganados \n";
