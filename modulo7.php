@@ -17,5 +17,5 @@ function primerVictoria($coleccionJuegos,$nombreJugador){
         
     }
 
-    return $indiceJuegoGanado;
+    /* return $indiceJuegoGanado; */
 }
