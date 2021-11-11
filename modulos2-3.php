@@ -20,6 +20,7 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
     7) Salir \n";
     echo "Ingrese una opcion entre 1 y 7: " ;
     $opcion = validarOpcion(1, 7) ; //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? 
+    /* Creo que esta bien asi, ya mandar directamente esos parametros asi despues los podes ingresar manualmente */
     return $opcion ;
 }
 
@@ -37,6 +38,39 @@ function validarOpcion ($numMin, $numMax) {
     return $opcionValida ;
 }
 
-$numeroMenu = seleccionarOpciones (); // Lo invoco para probar si anda, Despues BORRAR!!!
+/**
+ * Inicia el menu una vez validado la opcion
+ * @param int $opcionMenu - Opcion del menu validada
+ * @return void
+ */
+function iniciarMenu($opcionMenu){
+    switch ($opcionMenu) {
+        case 1:
+            echo "1) Jugar al tateti \n";
+            jugar();
+            break;
+        case 2:
+            # code...
+            break;
+        case 3:
+            # code...
+            break;
+        case 4:
+            # code...
+            break;
+        case 5:
+            # code...
+            break;
+        case 6:
+            # code...
+            break;
+        case 7:
+            # code...
+            break;
+    }
+}
+
+$numeroMenu = seleccionarOpciones ();
+iniciarMenu($numeroMenu); // Lo invoco para probar si anda, Despues BORRAR!!!
 
 /* Bien pensado Mili!! */
