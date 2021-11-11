@@ -12,7 +12,7 @@
 function primerVictoria($coleccionJuegos,$nombreJugador){
 
     $indiceJuegoGanado = 0;
-    determinarSiGano($coleccionJuegos,)
+    
     /* foreach ($coleccionJuegos as $indice => $elemento) {
         if ( ) {
             

@@ -17,7 +17,12 @@ function cargarJuegos ()
     $historialJuegos [9] = ["jugadorX" => "ANTO", "jugadorO" => "GALA", "puntosX" => 2, "puntosO" => 0];
     return $historialJuegos;
 }
-echo "esto funca?";
+
+$juegosIniciados = cargarJuegos();
+
+foreach ($juegosIniciados as $key => $value) {
+    echo $key;
+}
 /**
  * Nose, no lo probe xd
  */

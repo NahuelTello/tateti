@@ -1,6 +1,7 @@
 <?php
 
 include_once("tateti.php");
+include_once("modulos145.php");
 /**
  * funcion 2 <-- Explicacion 3
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
@@ -39,7 +40,8 @@ function validarOpcion ($numMin, $numMax) {
 }
 
 /**
- * Inicia el menu una vez validado la opcion
+ * Inicia el menu una vez v
+ * alidado la opcion
  * @param int $opcionMenu - Opcion del menu validada
  * @return void
  */
@@ -50,22 +52,23 @@ function iniciarMenu($opcionMenu){
             jugar();
             break;
         case 2:
-            # code...
+            echo "2) Mostrar un juego \n";
+            cargarJuegos();
             break;
         case 3:
-            # code...
+            echo "3) Mostrar el primer juego ganador \n";
             break;
         case 4:
-            # code...
+            echo "4) Mostrar porcentaje de Juegos ganados \n";
             break;
         case 5:
-            # code...
+            echo "5) Mostrar resumen de jugador \n";
             break;
         case 6:
-            # code...
+            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
             break;
         case 7:
-            # code...
+            echo "7) Salir \n";
             break;
     }
 }
