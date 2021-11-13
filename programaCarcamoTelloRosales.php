@@ -1,6 +1,8 @@
 <?php
 include_once("tateti.php");
-
+include_once("modulos145.php");
+include_once("modulo7.php");
+include_once("modulos2-3.php");
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
@@ -35,32 +37,55 @@ include_once("tateti.php");
 
 //Proceso:
 
-$juego = jugar();
+//$juego = jugar();
 //print_r($juego);
 //imprimirResultado($juego);
 
 
 
-/*
+$numeroMenu = seleccionarOpciones ();
 do {
-    $opcion = ...;
+    $opcion = $numeroMenu;
 
     
     switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+        case 1:
+            echo "1) Jugar al tateti \n";
+            jugar();
             break;
-        case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
+        case 2:
+            echo "2) Mostrar un juego \n";
+            cargarJuegos();
             break;
-        case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+        case 3:
+            echo "3) Mostrar el primer juego ganador \n";
+            echo "Ingrese el nombre del jugador a buscar: ";
+            $namePlayer = trim(fgets(STDIN));
+            $res = primerVictoria(cargarJuegos(),$namePlayer);
+            if ($res == -1) {
+                echo "El jugador ".$namePlayer." no gano ningun juego";
+            } else {
+                echo " *********************************** \n";
+                echo " Juego TATETI: 2 (gano 0) \n";
+                echo " Jugador X: ".$namePlayer." obtuvo ".$res." puntos\n";
+                echo " Jugador O: ".$namePlayer." obtuvo ".$res." puntos\n";
+                echo " *********************************** \n";
+            }
             break;
-        
-            //...
+        case 4:
+            echo "4) Mostrar porcentaje de Juegos ganados \n";
+            break;
+        case 5:
+            echo "5) Mostrar resumen de jugador \n";
+            break;
+        case 6:
+            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+            //Lo hace mili
+            break;
+        case 7:
+            echo "7) Salir \n";
+            break;
     }
-} while ($opcion != X);
-*/
+    $numeroMenu = seleccionarOpciones ();
+
+} while ($opcion >= 1 && $opcion <= 7);

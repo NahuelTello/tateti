@@ -46,44 +46,10 @@ function validarOpcion ($numMin, $numMax) {
  * @param int $opcionMenu - Opcion del menu validada
  * @return void
  */
-function iniciarMenu($opcionMenu){
-    switch ($opcionMenu) {
-        case 1:
-            echo "1) Jugar al tateti \n";
-            jugar();
-            break;
-        case 2:
-            echo "2) Mostrar un juego \n";
-            cargarJuegos();
-            break;
-        case 3:
-            echo "3) Mostrar el primer juego ganador \n";
-            echo "Ingrese el nombre del jugador a buscar: ";
-            $namePlayer = trim(fgets(STDIN));
-            $res = primerVictoria(cargarJuegos(),$namePlayer);
-            if ($res == -1) {
-                echo "No tuvo ninguna victoria!";
-            } else {
-                echo "La primer victoria del jugador: ".$namePlayer. ". Es: " .$res;
-            }
-            break;
-        case 4:
-            echo "4) Mostrar porcentaje de Juegos ganados \n";
-            break;
-        case 5:
-            echo "5) Mostrar resumen de jugador \n";
-            break;
-        case 6:
-            echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
-            //Lo hace mili
-            break;
-        case 7:
-            echo "7) Salir \n";
-            break;
-    }
-}
+/* function iniciarMenu($opcionMenu){
+} */
 
-$numeroMenu = seleccionarOpciones ();
-iniciarMenu($numeroMenu); // Lo invoco para probar si anda, Despues BORRAR!!!
+/* $numeroMenu = seleccionarOpciones ();
+iniciarMenu($numeroMenu); */ // Lo invoco para probar si anda, Despues BORRAR!!!
 
 /* Bien pensado Mili!! */
