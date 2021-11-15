@@ -1,7 +1,7 @@
 <?php
 
 include_once("tateti.php");
-include_once("modulos145.php");
+
 
 /**
  * funcion 2 <-- Explicacion 3
