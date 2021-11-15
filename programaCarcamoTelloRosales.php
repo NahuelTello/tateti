@@ -81,7 +81,7 @@ do {
             $nombreJugador = trim(fgets(STDIN));
             /* $jugadorRes = resumenJugador(cargarJuegos(),$nombreJugador);
             print_r($jugadorRes); */
-            echo " *********************************** \n";
+             echo " *********************************** \n";
                 echo " Jugador: " . $nombreJugador;
                 echo " Gano: ".$jugadorRes." juegos\n";
                 echo " Perdio: ".$jugadorRes." juegos\n";
