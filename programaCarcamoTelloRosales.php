@@ -81,9 +81,9 @@ function primerVictoria($coleccionJuegosBuscados,$nombreJugadorBuscado){
                 $primerJuegoGanado = $i;
                 $juegoEncontrado = false;
             }
-        } /* else {
+        } else {
             $primerJuegoGanado = -1;
-        } */
+        }
         $i++;
     }
 
@@ -227,8 +227,6 @@ function agregarJuego ($historialJuegos, $juego){
     array_push($historialJuegos, $juego);
     return $historialJuegos;
 }
-
-
 
 /**
  * muestra los datos de determinada partida de tateti.
