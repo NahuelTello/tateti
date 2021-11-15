@@ -144,7 +144,7 @@ do {
             break;
         case 2:
             echo "2) Mostrar un juego \n";
-            mostrarJuego();
+            
             break;
         case 3:
             echo "3) Mostrar el primer juego ganador \n";
