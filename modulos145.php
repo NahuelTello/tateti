@@ -20,9 +20,7 @@ function cargarJuegos ()
 
 $juegosIniciados = cargarJuegos();
 
-foreach ($juegosIniciados as $key => $value) {
-    echo $key;
-}
+/* print_r($juegosIniciados); */
 /**
  * Nose, no lo probe xd
  */
