@@ -15,7 +15,8 @@ include_once("tateti.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-/*********** PARTE NAHUEL **********/
+
+/************ PARTE NAHUEL ************/
 /**
  * funcion 2 <-- Explicacion 3
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
@@ -53,8 +54,9 @@ function validarOpcion ($numMin, $numMax) {
     return $opcionValida ;
 }
 
+/************ PARTE NAHUEL ************/
 
-
+/************ PARTE MARTINA ************/
 /**
  *  Historial precargado de partidas de tateti
  * @return array 
@@ -109,7 +111,7 @@ function mostrarJuego ($historialJuegos){
     echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.";
     echo "****************************************";
 }
-
+/************ PARTE MARTINA ************/
 
 
 /**************************************/
