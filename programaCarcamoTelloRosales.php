@@ -32,7 +32,7 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
     3) Mostrar el primer juego ganador \n
     4) Mostrar porcentaje de Juegos ganados \n
     5) Mostrar resumen de jugador \n
-    6) Mostrar listado de juegos Ordenado por juegador O\n
+    6) Mostrar listado de juegos Ordenado por jugador O\n
     7) Salir \n";
     echo "Ingrese una opcion entre 1 y 7: " ;
     $opcion = validarOpcion(1, 7); //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? 
@@ -188,7 +188,7 @@ function agregarJuego ($historialJuegos, $juego){
  * @param array $historialJuegos //Seria historialJuegos
  */
 function mostrarJuego($historialJuegos){
-    echo "Ingrese el número de partida que desea ver";
+    echo "Ingrese el número de partida que desea ver: ";
     $nroPartida = trim(fgets(STDIN));
     if ($historialJuegos[$nroPartida]["puntosX"] == $historialJuegos[$nroPartida]["puntosO"]){
         $resultado = "empate";
@@ -197,11 +197,11 @@ function mostrarJuego($historialJuegos){
     }else{
         $resultado = "ganó X";
     }
-    echo "****************************************";
-    echo "Juego TATETI: ". $nroPartida." (". $resultado. ")";
-    echo "Jugador X: ". $historialJuegos[$nroPartida]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.";
-    echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.";
-    echo "****************************************";
+    echo "**************************************** \n";
+    echo "Juego TATETI: ". $nroPartida." (". $resultado. ") \n";
+    echo "Jugador X: ". $historialJuegos[$nroPartida]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.\n";
+    echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
+    echo "**************************************** \n";
 }
 /************ PARTE MARTINA ************/
 
@@ -325,27 +325,22 @@ do {
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
-            //echo "1) Jugar al tateti \n";
             jugar();
             break;
         case 2:
-            //echo "2) Mostrar un juego \n";
-            /* mostrarJuego($arregloTateti); */
-
+            $coleccion = cargarJuegos();
+            mostrarJuego($coleccion);
             break;
         case 3:
             //echo "3) Mostrar el primer juego ganador \n";
             /* echo "Ingrese el nombre del jugador a buscar: ";
             $namePlayer = trim(fgets(STDIN));
-            $res = primerVictoria(cargarJuegos(),$namePlayer);
-            if ($res == -1) {
+            $res = primerVictoria(cargarJuegos(),$namePlayer); */
+            
+            /* if ($res == -1) {
                 echo "El jugador ".$namePlayer." no gano ningun juego";
             } else {
-                echo " *********************************** \n";
-                echo " Juego TATETI: 2 (gano 0) \n";
-                echo " Jugador X: ".$namePlayer." obtuvo ".$res." puntos\n";
-                echo " Jugador O: ".$namePlayer." obtuvo ".$res." puntos\n";
-                echo " *********************************** \n";
+                mostrarJuego();
             } */
             break;
         case 4:
