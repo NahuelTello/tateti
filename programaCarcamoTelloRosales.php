@@ -79,13 +79,12 @@ do {
             echo "5) Mostrar resumen de jugador \n";
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = trim(fgets(STDIN));
-            /* $jugadorRes = resumenJugador(cargarJuegos(),$nombreJugador);
-            print_r($jugadorRes); */
+            $resumenJuego = resumenJugador($juegosTotales, $nombreJugador);
              echo " *********************************** \n";
-                echo " Jugador: " . $nombreJugador;
-                echo " Gano: ".$jugadorRes." juegos\n";
-                echo " Perdio: ".$jugadorRes." juegos\n";
-                echo " Total de puntos acumulados: ".$jugadorRes;
+                echo " Jugador: " . $resumenJuego["nameJugador"];
+                echo " Gano: ".$resumenJuego["cantGanadas"]." juegos\n";
+                echo " Perdio: ".$resumenJuego["cantPerdidas"]." juegos\n";
+                echo " Total de puntos acumulados: ".$resumenJuego["totalPts"]." puntos"."\n";
                 echo " *********************************** \n";
             break;
         case 6:
