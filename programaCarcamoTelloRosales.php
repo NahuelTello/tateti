@@ -48,7 +48,6 @@ function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamar
  * @param int $numMax . El num Max seria 7
  */
 function validarOpcion ($numMin, $numMax) {
-    //
     //echo "Ingrese una opcion, entre 1 y 7: " ;
     $opcionValida = solicitarNumeroEntre($numMin, $numMax) ; //Invoco la funcion del programa "tateti" y me ahorro de hacer un if con la condicion de los rangos
     return $opcionValida ;
@@ -111,8 +110,13 @@ function resumenJugador ($arrayJuegos, $nombreJugador){
     $cantPerdidas = 0;
     $cantEmpatadas = 0;
     $sumaTotalPtos = 0;
-
-
+    $resumenJugadorTotal = [
+        "nameJugador" => $resJugador, 
+        "cantGanadas" => $cantGanadas, 
+        "cantPerdidas" => $cantPerdidas, 
+        "cantEmpates" => $cantEmpatadas, 
+        "totalPts" => $sumaTotalPtos 
+    ];
     foreach ($arrayJuegos as $indice => $elemento) {
         if (($nombreJugador == $arrayJuegos[$elemento] ["jugadorX"])) { //Buscamos el nombre del jugador si es X
             $resJugador = $arrayJuegos[$elemento]["jugadorX"]; //Lo guardamos en una variable
@@ -136,17 +140,60 @@ function resumenJugador ($arrayJuegos, $nombreJugador){
         }
         
     }
-    $resumenJugadorTotal = [
-        "nameJugador" => $resJugador, 
-        "cantGanadas" => $cantGanadas, 
-        "cantPerdidas" => $cantPerdidas, 
-        "cantEmpates" => $cantEmpatadas, 
-        "totalPts" => $sumaTotalPtos 
-    ];
-
-    return $resumenJugadorTotal;
+    echo " *********************************** \n";
+    echo " Jugador: " . $resumenJugadorTotal["nameJugador"];
+    echo " Gano: ".$resumenJugadorTotal["cantGanadas"]." juegos\n";
+    echo " Perdio: ".$resumenJugadorTotal["cantPerdidas"]." juegos\n";
+    echo " Total de puntos acumulados: ".$resumenJugadorTotal["totalPts"]." puntos"."\n";
+    echo " *********************************** \n";
 }
 
+/* $numeroMenu = seleccionarOpciones (); */
+do {
+    $numeroMenu = seleccionarOpciones ();
+    $opcion = $numeroMenu;
+    switch ($opcion) {
+        case 1:
+            //echo "1) Jugar al tateti \n";
+            jugar();
+            break;
+        case 2:
+            //echo "2) Mostrar un juego \n";
+            /* mostrarJuego($arregloTateti); */
+            break;
+        case 3:
+            //echo "3) Mostrar el primer juego ganador \n";
+            echo "Ingrese el nombre del jugador a buscar: ";
+            $namePlayer = trim(fgets(STDIN));
+            $res = primerVictoria(cargarJuegos(),$namePlayer);
+            if ($res == -1) {
+                echo "El jugador ".$namePlayer." no gano ningun juego";
+            } else {
+                echo " *********************************** \n";
+                echo " Juego TATETI: 2 (gano 0) \n";
+                echo " Jugador X: ".$namePlayer." obtuvo ".$res." puntos\n";
+                echo " Jugador O: ".$namePlayer." obtuvo ".$res." puntos\n";
+                echo " *********************************** \n";
+            }
+            break;
+        case 4:
+            //echo "4) Mostrar porcentaje de Juegos ganados \n";
+            break;
+        case 5:
+            //echo "5) Mostrar resumen de jugador \n";
+            echo "Ingrese el nombre del jugador: ";
+            $nombreJugador = trim(fgets(STDIN));
+            //$resumenJuego = resumenJugador(/**ARREGLO*/, $nombreJugador); //juegosTotales variable no definida, me hace falta sacar esa info ES TIPO ARRAY
+            break;
+        case 6:
+            //echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
+            //Lo hace mili
+            break;
+        case 7:
+            //Salir
+            break;
+    }
+} while ($opcion != 7);
 /************ PARTE NAHUEL ************/
 
 /************ PARTE MARTINA ************/
@@ -227,56 +274,3 @@ function mostrarJuego($historialJuegos){
 
 
 
-$numeroMenu = seleccionarOpciones ();
-do {
-    $opcion = $numeroMenu;
-    switch ($opcion) {
-        case 1:
-            //echo "1) Jugar al tateti \n";
-            jugar();
-            break;
-        case 2:
-            //echo "2) Mostrar un juego \n";
-            /* mostrarJuego($arregloTateti); */
-            break;
-        case 3:
-            //echo "3) Mostrar el primer juego ganador \n";
-            echo "Ingrese el nombre del jugador a buscar: ";
-            $namePlayer = trim(fgets(STDIN));
-            $res = primerVictoria(cargarJuegos(),$namePlayer);
-            if ($res == -1) {
-                echo "El jugador ".$namePlayer." no gano ningun juego";
-            } else {
-                echo " *********************************** \n";
-                echo " Juego TATETI: 2 (gano 0) \n";
-                echo " Jugador X: ".$namePlayer." obtuvo ".$res." puntos\n";
-                echo " Jugador O: ".$namePlayer." obtuvo ".$res." puntos\n";
-                echo " *********************************** \n";
-            }
-            break;
-        case 4:
-            //echo "4) Mostrar porcentaje de Juegos ganados \n";
-            break;
-        case 5:
-            //echo "5) Mostrar resumen de jugador \n";
-            /* echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
-            $resumenJuego = resumenJugador($juegosTotales, $nombreJugador); */ //juegosTotales variable no definida, me hace falta sacar esa info
-             /* echo " *********************************** \n";
-                echo " Jugador: " . $resumenJuego["nameJugador"];
-                echo " Gano: ".$resumenJuego["cantGanadas"]." juegos\n";
-                echo " Perdio: ".$resumenJuego["cantPerdidas"]." juegos\n";
-                echo " Total de puntos acumulados: ".$resumenJuego["totalPts"]." puntos"."\n";
-                echo " *********************************** \n"; */
-            break;
-        case 6:
-            //echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
-            //Lo hace mili
-            break;
-        case 7:
-            //Salir
-            break;
-    }
-    $numeroMenu = seleccionarOpciones ();
-
-} while ($opcion > 1 && $opcion < 7);
