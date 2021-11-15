@@ -1,5 +1,5 @@
 <?php
-
+include_once("tateti.php");
 
 /*
 La librería tateti posee la definición de constantes y funciones necesarias
