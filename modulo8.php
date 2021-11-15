@@ -2,7 +2,7 @@
 include_once("modulos145.php");
 include_once("tateti.php");
 /**
- * Implementar una función que dada la colección de juegos y el nombre de un jugador, retorne el resumen del jugador utilizando la estructura b) de la sección EXPLICACIÓN 2.
+ * Implementar una función que dada la colección de juegos y el nombre de un jugador, retorne el resumen del jugador.
  */
 
 /**
