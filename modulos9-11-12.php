@@ -57,7 +57,6 @@ echo "La cant de victorias del simbolo ". $simboloFinal . " es: " . $juegosGanad
  * @param array $coleccionDeJuegos
  */
 function ordenaJugadoresO ( $coleccionDeJuegos) {
-    //
     
     //Explicaciones de las funciones utilizadas: 
     /*Funcion predefinida: uasort --> Ordena un array con una función de comparación definida por el usuario y mantiene la asociación de índices, 
