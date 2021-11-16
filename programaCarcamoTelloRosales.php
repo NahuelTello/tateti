@@ -102,9 +102,6 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
     
 }
 
-/**
- * Implementar una función que dada la colección de juegos y el nombre de un jugador, retorne el resumen del jugador.
- */
 
 /**
  * Dada una coleccion de juegos y el nombre del jugador
@@ -112,7 +109,7 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
  * 
  * @param array $historialJuegos
  * @param Strgin $nombreJugador
- * @return no retorna
+ * @return 
  */
 function resumenJugador ($historialJuegos, $nombreJugador){
     //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
@@ -319,8 +316,7 @@ function cmp ($a, $b) {
 //print_r($juego);
 //imprimirResultado($juego);
 
-// *********************** MENU ***************** //
-/* $numeroMenu = seleccionarOpciones (); */
+/*********************** MENU *****************/
 do {
     $numeroMenu = seleccionarOpciones ();
     $opcion = $numeroMenu;
@@ -339,10 +335,10 @@ do {
             primerVictoria($coleccionDeJuegos,$jugador);
             break;
         case 4:
-            //echo "4) Mostrar porcentaje de Juegos ganados \n";
+            //4) Mostrar porcentaje de Juegos ganados;
             break;
         case 5:
-            //echo "5) Mostrar resumen de jugador \n";
+            //Mostrar resumen de jugador;
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
@@ -352,7 +348,6 @@ do {
             $odenDeO = ordenaJugadoresO(cargarJuegos());
             break;
         case 7:
-            //Salir
             break;
     }
 } while ($opcion != 7);
