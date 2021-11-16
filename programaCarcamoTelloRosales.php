@@ -191,6 +191,29 @@ function mostrarJuego($historialJuegos){
     echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
     echo "**************************************** \n";
 }
+
+
+function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
+    $i = 0;
+    $corte = false;
+    $indice = -1;
+    $cantPartidas = count ($historialJuegos);
+    while (($i < $cantPartidas) && ($corte)){
+        if (($jugadorBuscado == $historialJuegos [$i]["JugadorX"]){
+           if (($historialJuegos [$i]["PuntosX"] ) > ($historialJuegos [$i]["JugadorO"])){
+                $indice = $i;
+            }
+        } elseif ($jugadorBuscado == $historialJuegos [$i] ["JugadorO"]){
+           if ($historialJuegos [$i]["PuntosO"] > $historialJuegos [$i] ["JugadorX"]){
+               $indice = $i;
+           }
+        } else {
+            $i = $i + 1;
+        }
+    }
+    return $indice;
+}
+
 /************ PARTE MARTINA ************/
 
 /************ PARTE MILAGROS ************/
