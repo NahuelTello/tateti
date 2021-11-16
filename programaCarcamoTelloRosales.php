@@ -102,6 +102,7 @@ function resumenJugador ($historialJuegos, $nombreJugador){
         
             if ( ( $historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ) ) {
                 $juegosGanados = $juegosGanados + 1;
+                $puntosAcumulados = $historialJuegos [$indice]["puntosX"];
                 $puntosAcumulados = $puntosAcumulados + PTOS_GANADOR;
             } elseif (( $historialJuegos[$indice]["puntosX"] < $historialJuegos[$indice]["puntosO"] ) ) {
                 $juegosPerdidos = $juegosPerdidos + 1;
@@ -173,11 +174,11 @@ function agregarJuego ($historialJuegos, $juego){
 /**
  * Función 4 <-- Explicación 3
  * muestra los datos de determinada partida de tateti.
+ * @param int $nroPartida
  * @param array $historialJuegos //Seria historialJuegos
  */
-function mostrarJuego($historialJuegos){
-    echo "Ingrese el número de partida que desea ver: ";
-    $nroPartida = trim(fgets(STDIN));
+function mostrarJuego($historialJuegos, $nroPartida){
+    // string $resultado
     if ($historialJuegos[$nroPartida]["puntosX"] == $historialJuegos[$nroPartida]["puntosO"]){
         $resultado = "empate";
     }else if ($historialJuegos[$nroPartida]["puntosX"] < $historialJuegos[$nroPartida]["puntosO"]){
@@ -343,7 +344,9 @@ do {
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            mostrarJuego($arrayGames);
+            echo "Ingrese el número de partida que desea ver: ";
+            $numeroPartida = trim(fgets(STDIN));
+            mostrarJuego($arrayGames, $numeroPartida);
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: ";
@@ -376,12 +379,14 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
-            echo "¡Gracias por jugar!";
             //Salir
             break;
     }
-    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
+    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
     $opcion = trim(fgets(STDIN));
+    if ($opcion = 7){
+        echo "¡Gracias por jugar! :D";
+    }
 } while ($opcion != 7);
 
 
