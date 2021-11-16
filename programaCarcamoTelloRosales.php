@@ -58,19 +58,36 @@ function validarOpcion ($numMin, $numMax) {
  * Si el jugador no gano ningun juego, la funcion debe retornar el valor -1.
  * 
  * @param array $coleccionJuegosBuscados
- * @param String $nombreJugadorBuscado
- * @return int
+ * @return nada
  */
 
-function primerVictoria($coleccionJuegosBuscados,$nombreJugadorBuscado){
+function primerVictoria($coleccionJuegosBuscados, $nombreJugadorBuscado){
     /* int $i, $primerJuegoGanado, $longArreglo*/
-    /* boolean $juegoEncontrado */
+    /* boolean $encontrado */
 
     $primerJuegoGanado = -1;
-    $juegoEncontrado = true;
     $longArreglo = count($coleccionJuegosBuscados);
     $i=0;
-    while ($juegoEncontrado && ($i < $longArreglo)) {
+    $encontrado = false;
+    while (($i < $longArreglo) && $encontrado) {
+        if ($coleccionJuegosBuscados[$nombreJugadorBuscado]["jugadorX"] == $nombreJugadorBuscado){
+            if ($coleccionJuegosBuscados[$i]["puntosX"] > $coleccionJuegosBuscados[$i]["puntosO"]) {
+                $primerJuegoGanado = $i;
+                $res = "gano";
+                $encontrado = true;
+            }
+        } elseif ($coleccionJuegosBuscados[$nombreJugadorBuscado]["jugadorO"] == $nombreJugadorBuscado) {
+            if ($coleccionJuegosBuscados[$i]["puntosO"] > $coleccionJuegosBuscados[$i]["puntosX"]) {
+                $primerJuegoGanado = $i;
+                $encontrado = true;
+                $res = "gano";
+            }
+        } else {
+            echo "El jugador ".$coleccionJuegosBuscados[$nombreJugadorBuscado]." no gano ningun juego \n";
+        }
+        $i++;
+    }
+    /* while ($juegoEncontrado && ($i < $longArreglo)) {
         if ($coleccionJuegosBuscados[$i]["jugadorX"]==$nombreJugadorBuscado) {
             if ($coleccionJuegosBuscados[$i]["puntosX"] > $coleccionJuegosBuscados[$i]["puntosO"]) {
                 $primerJuegoGanado = $i;
@@ -85,9 +102,13 @@ function primerVictoria($coleccionJuegosBuscados,$nombreJugadorBuscado){
             $primerJuegoGanado = -1;
         }
         $i++;
-    }
+    } */
 
-    return $primerJuegoGanado;
+    echo "**************************************** \n";
+    echo "Juego TATETI: ". $primerJuegoGanado." (". $res. ") \n";
+    echo "Jugador X: ". $coleccionJuegosBuscados[$nombreJugadorBuscado]["jugadorX"]. " obtuvo ". $coleccionJuegosBuscados[$i]["puntosX"]. " puntos.\n";
+    echo "jugador O: ". $coleccionJuegosBuscados[$nombreJugadorBuscado]["jugadorO"]. " obtuvo ". $coleccionJuegosBuscados[$i]["puntosO"]. " puntos.\n";
+    echo "**************************************** \n";
 }
 
 /**
@@ -98,55 +119,52 @@ function primerVictoria($coleccionJuegosBuscados,$nombreJugadorBuscado){
  * Dada una coleccion de juegos y el nombre del jugador
  * retorna el resumen del jugador
  * 
- * @param array $arrayJuegos
+ * @param array $historialJuegos
  * @param Strgin $nombreJugador
- * @return array
+ * @return no retorna
  */
-function resumenJugador ($arrayJuegos, $nombreJugador){
-
-    // String $resJugador, int $cantGanadas, $cantPerdidas, $cantEmpatadas, $sumaTotalPtos
-    $resJugador = " ";
-    $cantGanadas = 0;
-    $cantPerdidas = 0;
-    $cantEmpatadas = 0;
-    $sumaTotalPtos = 0;
+function resumenJugador ($historialJuegos, $nombreJugador){
     
-    foreach ($arrayJuegos as $indice => $elemento) {
-        if (($nombreJugador == $arrayJuegos[$elemento] ["jugadorX"])) { //Buscamos el nombre del jugador si es X
-            $resJugador = $arrayJuegos[$elemento]["jugadorX"]; //Lo guardamos en una variable
-            if ( $arrayJuegos[$elemento]["puntosX"] > $arrayJuegos[$elemento]["puntosO"]) { //Si sus puntos son mas que el de O es porque gano
-                $cantGanadas = $cantGanadas + 1;
-            } elseif($arrayJuegos[$elemento]["puntosX"] < $arrayJuegos[$elemento]["puntosO"]) { //Si sus puntos son menos que el de O es porque perdio
-                $cantPerdidas = $cantPerdidas + 1;
-            } else { //Sino porque empato con O
-                $cantEmpatadas = $cantEmpatadas + 1; // Si no gano y ni perdio, entonces empato
-            }
+    
+    //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
+    // array $resJugador coleccion asociativa
+    $juegosGanados = 0;
+    $juegosPerdidos = 0;
+    $juegosEmpatados = 0;
+    $puntosAcumulados = 0;
 
-        } elseif ($nombreJugador == $arrayJuegos[$elemento] ["jugadorO"]) { //Buscamos el nombre del jugador si es O
-            $resJugador = $arrayJuegos[$elemento]["jugadoro"];
-            if ( $arrayJuegos[$elemento]["puntosO"] > $arrayJuegos[$elemento]["puntosx"]) { //Si sus puntos son mas que el de X es porque gano
-                $cantGanadas = $cantGanadas + 1;
-            }elseif($arrayJuegos[$elemento]["puntosO"] < $arrayJuegos[$elemento]["puntosX"]) { // Si sus puntos son menos que el de X es porque perdio
-                $cantPerdidas = $cantPerdidas + 1;
+    foreach ($historialJuegos as $indice => $elemento) {
+        if (($historialJuegos[$indice]["jugadorX"] == $nombreJugador) ||($historialJuegos[$indice]["jugadorO"] == $nombreJugador) ) {
+        
+            if ( ( $historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ) ) {
+                $juegosGanados = $juegosGanados + 1;
+                $puntosAcumulados = $puntosAcumulados + PTOS_GANADOR;
+            } elseif (( $historialJuegos[$indice]["puntosX"] < $historialJuegos[$indice]["puntosO"] ) ) {
+                $juegosPerdidos = $juegosPerdidos + 1;
+                $puntosAcumulados = $puntosAcumulados + PTOS_PERDEDOR;
             } else {
-                $cantEmpatadas = $cantEmpatadas + 1; // Si no gano y ni perdio, entonces empato
+                $juegosEmpatados = $juegosEmpatados + 1;
+                $puntosAcumulados = $puntosAcumulados + PTOS_EMPATE;
             }
         }
-        
     }
-    $resumenJugadorTotal = [
-        "nameJugador" => $resJugador, 
-        "cantGanadas" => $cantGanadas, 
-        "cantPerdidas" => $cantPerdidas, 
-        "cantEmpates" => $cantEmpatadas, 
-        "totalPts" => $sumaTotalPtos 
+
+    $resJugador = [
+        "nombre" => $nombreJugador,
+        "juegosGanados" => $juegosGanados,
+        "juegosPerdidos" => $juegosPerdidos,
+        "juegosEmpatados" => $juegosEmpatados,
+        "puntosAcumulados" => $puntosAcumulados
     ];
+    
     echo " *********************************** \n";
-    echo " Jugador: " . $resumenJugadorTotal["nameJugador"];
-    echo " Gano: ".$resumenJugadorTotal["cantGanadas"]." juegos\n";
-    echo " Perdio: ".$resumenJugadorTotal["cantPerdidas"]." juegos\n";
-    echo " Total de puntos acumulados: ".$resumenJugadorTotal["totalPts"]." puntos"."\n";
+    echo " Jugador: " .$resJugador["nombre"]."\n";
+    echo " Gano: ".$resJugador["juegosGanados"]." juegos\n";
+    echo " Perdio: ".$resJugador["juegosPerdidos"]." juegos\n";
+    echo " Empato: ".$resJugador["juegosEmpatados"]." juegos\n";
+    echo " Total de puntos acumulados: ".$resJugador["puntosAcumulados"]." puntos"."\n";
     echo " *********************************** \n";
+    
 }
 
 /************ PARTE NAHUEL ************/
@@ -293,12 +311,6 @@ function cmp ($a, $b) {
     return $resultadoComparacion ;
 }
 
-/* $odenDeO = ordenaJugadoresO(cargarJuegos()) ; //Lo invoque de esta manera para ver como lo imprimia por pantalla. ¡¡¡DESPUES BORRAR!!! */
-
-//Creo que funciona bien, Si hay algun error deberia saltar cuando lo invoquemos desde el programa principals
-
-
-
 /************ PARTE MILAGROS ************/
 
 
@@ -332,16 +344,10 @@ do {
             mostrarJuego($coleccion);
             break;
         case 3:
-            //echo "3) Mostrar el primer juego ganador \n";
-            /* echo "Ingrese el nombre del jugador a buscar: ";
-            $namePlayer = trim(fgets(STDIN));
-            $res = primerVictoria(cargarJuegos(),$namePlayer); */
-            
-            /* if ($res == -1) {
-                echo "El jugador ".$namePlayer." no gano ningun juego";
-            } else {
-                mostrarJuego();
-            } */
+            /* $coleccionJuegos = cargarJuegos();
+            echo "Ingrese el nombre del jugador que desea buscar: ";
+            $jugador = trim(fgets(STDIN));
+            primerVictoria($coleccionJuegos, $jugador); */
             break;
         case 4:
             //echo "4) Mostrar porcentaje de Juegos ganados \n";
@@ -352,11 +358,9 @@ do {
             $nombreJugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
             resumenJugador($coleccionDeJuegos, $nombreJugador);
-            //$resumenJuego = resumenJugador(/**ARREGLO*/, $nombreJugador); //juegosTotales variable no definida, me hace falta sacar esa info ES TIPO ARRAY
             break;
         case 6:
-            //echo "6) Mostrar listado de juegos Ordenado por juegador O \n";
-            //Lo hace mili
+            $odenDeO = ordenaJugadoresO(cargarJuegos());
             break;
         case 7:
             //Salir
