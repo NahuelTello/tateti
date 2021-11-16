@@ -354,7 +354,7 @@ do{
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: ";
-            $jugador = trim(fgets(STDIN));
+            $jugador = strtoupper(trim(fgets(STDIN)));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             echo $res."\n";
             if ($res > -1) {
