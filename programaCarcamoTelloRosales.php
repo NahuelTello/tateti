@@ -194,7 +194,7 @@ function mostrarJuego($historialJuegos){
 /**
  * Busca la primer victoria de un jugador
  * @param array $historialJuegos
- * @param String $jugadorBuscado
+ * @param string $jugadorBuscado
  * @return int
  */
 function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
@@ -216,10 +216,41 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
         } else {
             $i = $i + 1;
         }
+        $i ++;
     }
     return $indice;
 }
+/** 
+ * Calcula el porcentaje de victorias respecto al total de partidas jugadas
+ * @param int $victorias
+ * @param float $porcentaje
+ * @return float
+ */
+function porcentajeVictorias($historialJuegos){
+    $victorias = cantidadVictorias($historialJuegos);
+    $porcentaje = ($victorias*100)/count($historialJuegos);
+    return $porcentaje;
+}
 
+/**
+ * Contea la cantidad de veces que se ganó una partida
+ * respecto al total de partidas de tateti jugadas.
+ * @param int $victorias
+ * @return int
+ */
+function cantidadVictorias ($historialJuegos){
+ 
+    $victorias = 0;
+
+    foreach ($historialJuegos as $indice => $elemento) {
+        if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
+            $victorias = $victorias;
+        } else {
+            $victorias ++ ;
+        }
+    }
+    return $victorias;
+}
 
 /************ PARTE MARTINA ************/
 
