@@ -70,7 +70,6 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
         if (($historialJuegos[$i]["jugadorX"] == $nombreJugadorBuscado) || ($historialJuegos[$i]["jugadorO"] == $nombreJugadorBuscado)){
             if (($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"])|| ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"])) {
                 $primerJuegoGanado = $i;
-                $res = "gano";
                 $encontrado = false;
             } else {
                 $primerJuegoGanado = -1;
@@ -290,7 +289,7 @@ function cmp ($a, $b) {
 
 
 //Inicialización de variables:
-
+$arrayGames = cargarJuegos();
 //$arregloTateti = [];
 //Proceso:
 
@@ -305,11 +304,12 @@ do {
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
-            jugar();
+            //jugar();
+            $partida = jugar();
+            $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            $coleccion = cargarJuegos();
-            mostrarJuego($coleccion);
+            mostrarJuego($arrayGames);
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: ";
