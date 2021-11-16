@@ -192,7 +192,7 @@ function mostrarJuego($historialJuegos, $nroPartida){
         $resultado = "ganó X";
     }
     echo "**************************************** \n";
-    echo "Juego TATETI: ". $nroPartida." (". $resultado. ") \n";
+    echo "Juego TATETI: ". ($nroPartida+1)." (". $resultado. ") \n";
     echo "Jugador X: ". $historialJuegos[$nroPartida]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.\n";
     echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
     echo "**************************************** \n";
@@ -213,19 +213,14 @@ function porcentajeVictorias($historialJuegos){
 /**
  * Contea la cantidad de veces que se ganó una partida
  * respecto al total de partidas de tateti jugadas.
- * @param int $victorias
+ * @param array $historialJuegos
  * @return int
  */
 function cantidadVictorias ($historialJuegos){
-    $victorias = 0;
-
-    foreach ($historialJuegos as $indice => $elemento) {
-        if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
-            $victorias = $victorias;
-        } else {
-            $victorias ++ ;
-        }
-    }
+    // int $victoriasCruz, $victoriasCirculo, $victorias
+    $victoriasCruz = victoriasDeSimbolos($historialJuegos, 'CRUZ');
+    $victoriasCirculo = victoriasDeSimbolos ($historialJuegos, 'CIRCULO');
+    $victorias = $victoriasCruz + $victoriasCirculo;
     return $victorias;
 }
 
@@ -359,7 +354,7 @@ do{
             if ($res > -1) {
               mostrarJuego($arrayGames, $res);
             } else {
-                echo "El jugador ". $jugador. " no gano ningun juego";
+                echo "El jugador ". $jugador. " no gano ningun juego\n";
             }
             
             break;
