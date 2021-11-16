@@ -58,6 +58,8 @@ function validarOpcion ($numMin, $numMax) {
  * @return int
  */
 function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
+    // int $i, $indice, $cantPartidas
+    // boolean $corte
     $i = 0;
     $corte = false;
     $indice = -1;
@@ -73,9 +75,8 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
                 $indice = $i;
                 $corte = true;
             }
-        } else {
-            $i = $i + 1;
         }
+        $i++;
     }
     return $indice;
 }
@@ -210,7 +211,6 @@ function porcentajeVictorias($historialJuegos){
  * @return int
  */
 function cantidadVictorias ($historialJuegos){
- 
     $victorias = 0;
 
     foreach ($historialJuegos as $indice => $elemento) {
@@ -348,8 +348,8 @@ do {
             echo "Ingrese el nombre del jugador que desea buscar: ";
             $jugador = trim(fgets(STDIN));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
-            echo $res;
-            if ($res != -1) {
+            echo $res."\n";
+            if ($res > -1) {
                 echo "**************************************** \n";
                 echo "Juego TATETI: ". $res." (". $res+1 .")\n";
                 echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
