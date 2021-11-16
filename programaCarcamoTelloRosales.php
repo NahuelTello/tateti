@@ -58,48 +58,30 @@ function validarOpcion ($numMin, $numMax) {
  * Si el jugador no gano ningun juego, la funcion debe retornar el valor -1.
  * 
  * @param array $historialJuegos
- * @return nada
+ * @return int
  */
 
 function primerVictoria($historialJuegos, $nombreJugadorBuscado){
     /* int $i, $primerJuegoGanado*/
     /* boolean $encontrado */
 
-    $primerJuegoGanado = -1;
+    $primerJuegoGanado = 0;
     $i=0;
     $encontrado = true;
     while (($i < count($historialJuegos)) && $encontrado) {
         if (($historialJuegos[$i]["jugadorX"] == $nombreJugadorBuscado) || ($historialJuegos[$i]["jugadorO"] == $nombreJugadorBuscado)){
-            if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
+            if (($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"])|| ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"])) {
                 $primerJuegoGanado = $i;
                 $res = "gano";
                 $encontrado = false;
-
-                echo "**************************************** \n";
-                echo "Juego TATETI: ". $primerJuegoGanado." (". $res.")\n";
-                echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
-                echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
-                echo "**************************************** \n";
+            } else {
+                $primerJuegoGanado = -1;
+                $encontrado = false;
             }
-        } elseif ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
-            $primerJuegoGanado = $i;
-            $encontrado = false;
-            $res = "gano";
-            
-            echo "**************************************** \n";
-            echo "Juego TATETI: ". $i." (". $res. ") \n";
-            echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
-            echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
-            echo "**************************************** \n";
-        } else {
-            echo "El jugador ".$nombreJugadorBuscado." no gano ningun juego \n";
-            $encontrado = true;
-        }
+        } 
         $i++;
     }
-    
-    
-    
+    return $primerJuegoGanado;
 }
 
 /**
@@ -341,7 +323,17 @@ do {
             echo "Ingrese el nombre del jugador que desea buscar: ";
             $jugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
-            primerVictoria($coleccionDeJuegos,$jugador);
+            $res = primerVictoria($coleccionDeJuegos,$jugador);
+            if ($res > -1) {
+                /* echo "**************************************** \n";
+            echo "Juego TATETI: ". $primerJuegoGanado." (". $res.")\n";
+            echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
+            echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
+            echo "**************************************** \n"; */
+            } else {
+                /* echo "El jugador ". $jugador. "no gano ningun juego"; */
+            }
+            
             break;
         case 4:
             //echo "4) Mostrar porcentaje de Juegos ganados \n";
