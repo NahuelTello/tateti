@@ -87,7 +87,7 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
             $res = "gano";
             
             echo "**************************************** \n";
-        echo "Juego TATETI: ". $i." (". $res. ") \n";
+            echo "Juego TATETI: ". $i." (". $res. ") \n";
             echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
             echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
             echo "**************************************** \n";
@@ -235,7 +235,7 @@ function seleccionarSimbolo () {
     } while ($simbolo <> $simboloAux);
     return $simbolo ;
 }
-/* $simboloFinal = seleccionarSimbolo() ; //Lo invoque para probar si funcionaba, ¡¡¡BORRAR DESPUES!!! */
+
 
 
 /**
