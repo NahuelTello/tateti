@@ -368,7 +368,7 @@ do{
             
             break;
         case 4:
-            //Mostrar porcentaje de Juegos ganados 
+            //Mostrar porcentaje de Juegos ganados aaaaaa
             $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
             echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
             break;
