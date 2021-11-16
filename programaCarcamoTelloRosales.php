@@ -220,6 +220,7 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
     return $indice;
 }
 
+
 /************ PARTE MARTINA ************/
 
 /************ PARTE MILAGROS ************/
@@ -363,7 +364,7 @@ do {
         case 5:
             //echo "5) Mostrar resumen de jugador \n";
             echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
+            $nombreJugador = strtoupper(trim(fgets(STDIN))); 
             $coleccionDeJuegos = cargarJuegos();
             resumenJugador($coleccionDeJuegos, $nombreJugador);
             break;
