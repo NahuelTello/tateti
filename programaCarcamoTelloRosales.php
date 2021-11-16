@@ -86,21 +86,12 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
 }
 
 /**
- * Implementar una función que dada la colección de juegos y el nombre de un jugador, retorne el resumen del jugador.
- */
-
-/**
  * Dada una coleccion de juegos y el nombre del jugador
  * retorna el resumen del jugador
  * 
  * @param array $historialJuegos
-<<<<<<< HEAD
  * @param String $nombreJugador
  * @return 
-=======
- * @param Strgin $nombreJugador
- * @return no retorna
->>>>>>> df50d0847c1c71e540f181e493b9e1a757bc6aea
  */
 function resumenJugador ($historialJuegos, $nombreJugador){
     //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
