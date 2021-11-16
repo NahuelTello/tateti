@@ -22,7 +22,7 @@ include_once("tateti.php");
  * menu debe ser "Salir"
  * @return int
  */
-function seleccionarOpciones() { //Ingresamos la opcion del menu.... Debe llamarse seleccionarOpcion, le puse opciones xq me invoca al otro
+function seleccionarOpcion() { //Ingresamos la opcion del menu.... Debe llamarse seleccionarOpcion, le puse opciones xq me invoca al otro
     //INT $opcion 
     echo "\n  Menú de opciones \n
     1) Jugar al tateti \n
@@ -350,9 +350,8 @@ $arrayGames = cargarJuegos();
 //Proceso:
 
 // *********************** MENU ***************** //
-/* $numeroMenu = seleccionarOpciones (); */
 do {
-    $numeroMenu = seleccionarOpciones ();
+    $numeroMenu = seleccionarOpcion ();
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
