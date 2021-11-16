@@ -98,29 +98,20 @@ function resumenJugador ($historialJuegos, $nombreJugador){
     $puntosAcumulados = 0;
 
     foreach ($historialJuegos as $indice => $elemento) {
-        if (($historialJuegos[$indice]["jugadorX"] == $nombreJugador)) {
+        if (($historialJuegos[$indice]["jugadorX"] == $nombreJugador) ||($historialJuegos[$indice]["jugadorO"] == $nombreJugador) ) {
+        
             if ( ( $historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ) ) {
                 $juegosGanados = $juegosGanados + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosX"];
+                $puntosAcumulados = $historialJuegos [$indice]["puntosX"];
+                $puntosAcumulados = $puntosAcumulados + PTOS_GANADOR;
             } elseif (( $historialJuegos[$indice]["puntosX"] < $historialJuegos[$indice]["puntosO"] ) ) {
                 $juegosPerdidos = $juegosPerdidos + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosX"];
+                $puntosAcumulados = $puntosAcumulados + PTOS_PERDEDOR;
             } else {
                 $juegosEmpatados = $juegosEmpatados + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosX"];
+                $puntosAcumulados = $puntosAcumulados + PTOS_EMPATE;
             }
-        } elseif ($historialJuegos[$indice]["jugadorO"] == $nombreJugador) {
-            if (( $historialJuegos[$indice]["puntosO"] > $historialJuegos[$indice]["puntosX"] )) {
-                $juegosGanados = $juegosGanados + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosO"];
-            } elseif ( ( $historialJuegos[$indice]["puntosO"] < $historialJuegos[$indice]["puntosX"] ) ) {
-                $juegosPerdidos = $juegosPerdidos + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosO"];
-            } else {
-                $juegosEmpatados = $juegosEmpatados + 1;
-                $puntosAcumulados = $historialJuegos[$indice]["puntosO"];
-            }
-        } 
+        }
     }
 
     $resJugador = [
@@ -196,11 +187,11 @@ function agregarJuego ($historialJuegos, $juego){
 /**
  * Función 4 <-- Explicación 3
  * muestra los datos de determinada partida de tateti.
+ * @param int $nroPartida
  * @param array $historialJuegos //Seria historialJuegos
  */
-function mostrarJuego($historialJuegos){
-    echo "Ingrese el número de partida que desea ver: ";
-    $nroPartida = trim(fgets(STDIN));
+function mostrarJuego($historialJuegos, $nroPartida){
+    // string $resultado
     if ($historialJuegos[$nroPartida]["puntosX"] == $historialJuegos[$nroPartida]["puntosO"]){
         $resultado = "empate";
     }else if ($historialJuegos[$nroPartida]["puntosX"] < $historialJuegos[$nroPartida]["puntosO"]){
@@ -349,6 +340,10 @@ $arrayGames = cargarJuegos();
 //$arregloTateti = [];
 //Proceso:
 
+//$juego = jugar();
+//print_r($juego);
+//imprimirResultado($juego);
+
 // *********************** MENU ***************** //
 do {
     $numeroMenu = seleccionarOpcion ();
@@ -357,21 +352,22 @@ do {
         case 1:
             //jugar();
             $partida = jugar();
-            print_r($partida);
             imprimirResultado($partida);
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            mostrarJuego($arrayGames);
+            echo "Ingrese el número de partida que desea ver: ";
+            $numeroPartida = trim(fgets(STDIN));
+            mostrarJuego($arrayGames, $numeroPartida);
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: ";
-            $jugador = strtoupper(trim(fgets(STDIN))); 
+            $jugador = trim(fgets(STDIN));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
-            
+            echo $res."\n";
             if ($res > -1) {
                 echo "**************************************** \n";
-                echo "Juego TATETI: ". $res." (". $res .")\n";
+                echo "Juego TATETI: ". $res." (". $res+1 .")\n";
                 echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
                 echo "jugador O: ". $arrayGames[$res]["jugadorO"]. " obtuvo ". $arrayGames[$res]["puntosO"]. " puntos.\n";
                 echo "**************************************** \n";
@@ -402,12 +398,22 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
+<<<<<<< HEAD
+            //Salir
+            break;
+    }
+    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
+=======
             echo "¡Gracias por jugar! \n";
             //Salir
             break;
     }
     echo "\n ¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
+>>>>>>> 219c698dda0de32f69a799208c70d59fd7877497
     $opcion = trim(fgets(STDIN));
+    if ($opcion = 7){
+        echo "¡Gracias por jugar! :D";
+    }
 } while ($opcion != 7);
 
 
