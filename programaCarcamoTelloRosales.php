@@ -399,18 +399,18 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
-<<<<<<< HEAD
+
             //Salir
             break;
     }
     echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
-=======
+
             echo "¡Gracias por jugar! \n";
             //Salir
             break;
     }
     echo "\n ¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
->>>>>>> 219c698dda0de32f69a799208c70d59fd7877497
+
     $opcion = trim(fgets(STDIN));
     if ($opcion = 7){
         echo "¡Gracias por jugar! :D";
