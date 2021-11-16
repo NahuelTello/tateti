@@ -206,10 +206,12 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
         if ($jugadorBuscado == $historialJuegos[$i]["jugadorX"]) {
             if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
                 $indice = $i;
+                $corte = true;
             }
         } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
             if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
                 $indice = $i;
+                $corte = true;
             }
         } else {
             $i = $i + 1;
@@ -344,11 +346,11 @@ do {
             $jugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
             $res = buscaPrimerVictoria($coleccionDeJuegos,$jugador);
-            if ($res > -1) {
+            if ($res != -1) {
                 echo "**************************************** \n";
                 echo "Juego TATETI: ". $primerJuegoGanado." (". $res.")\n";
-                echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
-                echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
+                echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
+                echo "jugador O: ". $arrayGames[$res]["jugadorO"]. " obtuvo ". $arrayGames[$res]["puntosO"]. " puntos.\n";
                 echo "**************************************** \n";
             } else {
                 echo "El jugador ". $jugador. "no gano ningun juego";
