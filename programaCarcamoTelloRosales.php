@@ -398,11 +398,31 @@ do{
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
+<<<<<<< HEAD
+
+            //Salir
+            break;
+    }
+    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
+
+            echo "¡Gracias por jugar! \n";
+            //Salir
+            break;
+    }
+    echo "\n ¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
+
+    $opcion = trim(fgets(STDIN));
+    if ($opcion = 7){
+        echo "¡Gracias por jugar! :D";
+    }
+} while ($opcion != 7);
+=======
             echo "Gracias por jugar!";
             break;
         }
         echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
+>>>>>>> 77bf275435a3e92bcdc075593c4349bd972173f7
 
 
