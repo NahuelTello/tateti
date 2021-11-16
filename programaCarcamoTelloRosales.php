@@ -60,17 +60,21 @@ function validarOpcion ($numMin, $numMax) {
 function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
     // int $i, $indice, $cantPartidas
     // boolean $corte
+<<<<<<< HEAD
     $i = 0;
+=======
+>>>>>>> 2ae00abd8948b8717b8cdbdba562a9702ea2b992
     $corte = true;
     $indice = -1;
     $cantPartidas = count ($historialJuegos);
+    $i = 0;
     while (($i < $cantPartidas) && ($corte)){
-        if ($jugadorBuscado == $historialJuegos[$i]["jugadorX"]) {
+        if ($historialJuegos[$i]["jugadorX"] == $jugadorBuscado) {
             if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
                 $indice = $i;
                 $corte = false;
             }
-        } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
+        } elseif ($historialJuegos[$i]["jugadorO"] == $jugadorBuscado) {
             if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
                 $indice = $i;
                 $corte = false;
@@ -319,7 +323,7 @@ function cmp ($a, $b) {
 /**************************************/
 
 //Declaración de variables:
-
+// array $arrayGames
 
 //Inicialización de variables:
 $arrayGames = cargarJuegos();
