@@ -59,9 +59,9 @@ function validarOpcion ($numMin, $numMax) {
  * @return int
  */
 
-function primerVictoria($historialJuegos, $nombreJugadorBuscado){
-    /* int $i, $primerJuegoGanado*/
-    /* boolean $encontrado */
+/* function primerVictoria($historialJuegos, $nombreJugadorBuscado){
+    //int $i, $primerJuegoGanado
+    //boolean $encontrado
 
     $primerJuegoGanado = 0;
     $i=0;
@@ -70,7 +70,6 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
         if (($historialJuegos[$i]["jugadorX"] == $nombreJugadorBuscado) || ($historialJuegos[$i]["jugadorO"] == $nombreJugadorBuscado)){
             if (($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"])|| ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"])) {
                 $primerJuegoGanado = $i;
-                $res = "gano";
                 $encontrado = false;
             } else {
                 $primerJuegoGanado = -1;
@@ -80,7 +79,7 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
         $i++;
     }
     return $primerJuegoGanado;
-}
+} */
 
 /**
  * Dada una coleccion de juegos y el nombre del jugador
@@ -192,21 +191,26 @@ function mostrarJuego($historialJuegos){
     echo "**************************************** \n";
 }
 
-
+/**
+ * Busca la primer victoria de un jugador
+ * @param array $historialJuegos
+ * @param String $jugadorBuscado
+ * @return int
+ */
 function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
     $i = 0;
     $corte = false;
     $indice = -1;
     $cantPartidas = count ($historialJuegos);
     while (($i < $cantPartidas) && ($corte)){
-        if (($jugadorBuscado == $historialJuegos [$i]["JugadorX"]){
-           if (($historialJuegos [$i]["PuntosX"] ) > ($historialJuegos [$i]["JugadorO"])){
+        if ($jugadorBuscado == $historialJuegos[$i]["jugadorX"]) {
+            if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
                 $indice = $i;
             }
-        } elseif ($jugadorBuscado == $historialJuegos [$i] ["JugadorO"]){
-           if ($historialJuegos [$i]["PuntosO"] > $historialJuegos [$i] ["JugadorX"]){
-               $indice = $i;
-           }
+        } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
+            if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
+                $indice = $i;
+            }
         } else {
             $i = $i + 1;
         }
@@ -314,7 +318,7 @@ function cmp ($a, $b) {
 
 
 //Inicialización de variables:
-
+$arrayGames = cargarJuegos();
 //$arregloTateti = [];
 //Proceso:
 
@@ -329,25 +333,26 @@ do {
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
-            jugar();
+            //jugar();
+            $partida = jugar();
+            $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            $coleccion = cargarJuegos();
-            mostrarJuego($coleccion);
+            mostrarJuego($arrayGames);
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: ";
             $jugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
-            $res = primerVictoria($coleccionDeJuegos,$jugador);
+            $res = buscaPrimerVictoria($coleccionDeJuegos,$jugador);
             if ($res > -1) {
-                /* echo "**************************************** \n";
-            echo "Juego TATETI: ". $primerJuegoGanado." (". $res.")\n";
-            echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
-            echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
-            echo "**************************************** \n"; */
+                echo "**************************************** \n";
+                echo "Juego TATETI: ". $primerJuegoGanado." (". $res.")\n";
+                echo "Jugador X: ". $historialJuegos[$i]["jugadorX"]. " obtuvo ". $historialJuegos[$i]["puntosX"]. " puntos.\n";
+                echo "jugador O: ". $historialJuegos[$i]["jugadorO"]. " obtuvo ". $historialJuegos[$i]["puntosO"]. " puntos.\n";
+                echo "**************************************** \n";
             } else {
-                /* echo "El jugador ". $jugador. "no gano ningun juego"; */
+                echo "El jugador ". $jugador. "no gano ningun juego";
             }
             
             break;
