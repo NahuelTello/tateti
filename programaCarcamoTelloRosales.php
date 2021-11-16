@@ -403,11 +403,11 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
-            echo "¡Gracias por jugar!";
+            echo "¡Gracias por jugar! \n";
             //Salir
             break;
     }
-    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
+    echo "\n ¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
     $opcion = trim(fgets(STDIN));
 } while ($opcion != 7);
 
