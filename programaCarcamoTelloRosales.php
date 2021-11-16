@@ -331,13 +331,11 @@ $arrayGames = cargarJuegos();
 //imprimirResultado($juego);
 
 // *********************** MENU ***************** //
-/* $numeroMenu = seleccionarOpciones (); */
 do {
     $numeroMenu = seleccionarOpciones ();
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
-            //jugar();
             $partida = jugar();
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
@@ -348,7 +346,7 @@ do {
             echo "Ingrese el nombre del jugador que desea buscar: ";
             $jugador = trim(fgets(STDIN));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
-            echo $res."\n";
+            //cho $res."\n";
             if ($res > -1) {
                 echo "**************************************** \n";
                 echo "Juego TATETI: ". $res." (". $res+1 .")\n";
@@ -361,12 +359,10 @@ do {
             
             break;
         case 4:
-            //echo "4) Mostrar porcentaje de Juegos ganados \n";
             $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
             echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
             break;
         case 5:
-            //echo "5) Mostrar resumen de jugador \n";
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
             resumenJugador($arrayGames, $nombreJugador);
@@ -375,7 +371,6 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
-            //Salir
             break;
     }
 } while ($opcion != 7);
