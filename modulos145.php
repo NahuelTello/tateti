@@ -59,23 +59,21 @@ function mostrarJuego ($historialJuegos)
     echo "****************************************";
 }
 
-
-
-function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
+function primeraVictoria ($historialJuegos, $jugadorBuscado){
     $i = 0;
     $corte = false;
     $indice = -1;
     $cantPartidas = count ($historialJuegos);
     while (($i < $cantPartidas) && ($corte)){
-        if (($jugadorBuscado == $historialJuegos [$i]["JugadorX"]){
-           if (($historialJuegos [$i]["PuntosX"] ) > ($historialJuegos [$i]["JugadorO"])){
+        if ($jugadorBuscado == $historialJuegos [$i]["JugadorX"]){
+            if ($historialJuegos [$i]["PuntosX"]  > $historialJuegos [$i]["JugadorO"]){
+                $indice = $i ;
+            }
+        }elseif ($jugadorBuscado == $historialJuegos [$i] ["JugadorO"]){
+            if ($historialJuegos [$i]["PuntosO"] > $historialJuegos [$i] ["JugadorX"]){
                 $indice = $i;
             }
-        } elseif ($jugadorBuscado == $historialJuegos [$i] ["JugadorO"]){
-           if ($historialJuegos [$i]["PuntosO"] > $historialJuegos [$i] ["JugadorX"]){
-               $indice = $i;
-           }
-        } else {
+        }else {
             $i = $i + 1;
         }
     }
