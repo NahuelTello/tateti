@@ -102,6 +102,9 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
     
 }
 
+/**
+ * Implementar una función que dada la colección de juegos y el nombre de un jugador, retorne el resumen del jugador.
+ */
 
 /**
  * Dada una coleccion de juegos y el nombre del jugador
@@ -109,7 +112,7 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
  * 
  * @param array $historialJuegos
  * @param Strgin $nombreJugador
- * @return 
+ * @return no retorna
  */
 function resumenJugador ($historialJuegos, $nombreJugador){
     //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
@@ -157,7 +160,10 @@ function resumenJugador ($historialJuegos, $nombreJugador){
 
 /************ PARTE MARTINA ************/
 /**
- *  Historial precargado de partidas de tateti
+ * Función 1 <-- Explicación 3
+ *  Historial precargado de partidas de tateti.
+ *  Los datos de las partidas inventadas se almacenaron en un arreglo multidimensional indexado,
+ * que contiene múltiples arreglos asociativos. 
  * @return array 
  */
 function cargarJuegos (){
@@ -175,19 +181,21 @@ function cargarJuegos (){
 }
 
 /**
+ * Función 5 <-- Explicación 3
  * Agrega la última partida al historial de juegos de tateti
  * @param array $juego
  * @param array $historialJuegos
  * @return array
  */
 function agregarJuego ($historialJuegos, $juego){
-    //string $jugadorX, $jugadorO
-    //int $puntosX, $puntosO, $nroIndice
     array_push($historialJuegos, $juego);
+    //utilizamos la función array_push: recibe dos elementos ($arreglo, $variable),
+    //y agrega al arreglo ingresado, la variable ingresada en la función.
     return $historialJuegos;
 }
 
 /**
+ * Función 4 <-- Explicación 3
  * muestra los datos de determinada partida de tateti.
  * @param array $historialJuegos //Seria historialJuegos
  */
@@ -316,7 +324,8 @@ function cmp ($a, $b) {
 //print_r($juego);
 //imprimirResultado($juego);
 
-/*********************** MENU *****************/
+// *********************** MENU ***************** //
+/* $numeroMenu = seleccionarOpciones (); */
 do {
     $numeroMenu = seleccionarOpciones ();
     $opcion = $numeroMenu;
@@ -335,10 +344,10 @@ do {
             primerVictoria($coleccionDeJuegos,$jugador);
             break;
         case 4:
-            //4) Mostrar porcentaje de Juegos ganados;
+            //echo "4) Mostrar porcentaje de Juegos ganados \n";
             break;
         case 5:
-            //Mostrar resumen de jugador;
+            //echo "5) Mostrar resumen de jugador \n";
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = trim(fgets(STDIN));
             $coleccionDeJuegos = cargarJuegos();
@@ -348,6 +357,7 @@ do {
             $odenDeO = ordenaJugadoresO(cargarJuegos());
             break;
         case 7:
+            //Salir
             break;
     }
 } while ($opcion != 7);
