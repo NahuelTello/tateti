@@ -61,19 +61,19 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
     // int $i, $indice, $cantPartidas
     // boolean $corte
     $i = 0;
-    $corte = false;
+    $corte = true;
     $indice = -1;
     $cantPartidas = count ($historialJuegos);
     while (($i < $cantPartidas) && ($corte)){
         if ($jugadorBuscado == $historialJuegos[$i]["jugadorX"]) {
             if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
                 $indice = $i;
-                $corte = true;
+                $corte = false;
             }
         } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
             if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
                 $indice = $i;
-                $corte = true;
+                $corte = false;
             }
         }
         $i++;
@@ -339,6 +339,7 @@ do {
         case 1:
             //jugar();
             $partida = jugar();
+            imprimirResultado($partida);
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
@@ -375,9 +376,12 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
+            echo "¡Gracias por jugar!";
             //Salir
             break;
     }
+    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
+    $opcion = trim(fgets(STDIN));
 } while ($opcion != 7);
 
 
