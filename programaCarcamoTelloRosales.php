@@ -345,7 +345,7 @@ $arrayGames = cargarJuegos();
 //imprimirResultado($juego);
 
 // *********************** MENU ***************** //
-do {
+do{
     $numeroMenu = seleccionarOpcion ();
     $opcion = $numeroMenu;
     switch ($opcion) {
@@ -398,22 +398,11 @@ do {
             $odenDeO = ordenaJugadoresO($arrayGames);
             break;
         case 7:
-<<<<<<< HEAD
-            //Salir
+            echo "Gracias por jugar!";
             break;
-    }
-    echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
-=======
-            echo "¡Gracias por jugar! \n";
-            //Salir
-            break;
-    }
-    echo "\n ¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).";
->>>>>>> 219c698dda0de32f69a799208c70d59fd7877497
-    $opcion = trim(fgets(STDIN));
-    if ($opcion = 7){
-        echo "¡Gracias por jugar! :D";
-    }
-} while ($opcion != 7);
+        }
+        echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
+        $opcion = trim(fgets(STDIN));
+    }while ($opcion != 7);
 
 
