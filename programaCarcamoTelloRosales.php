@@ -218,8 +218,10 @@ function porcentajeVictorias($historialJuegos){
  */
 function cantidadVictorias ($historialJuegos){
     // int $victoriasCruz, $victoriasCirculo, $victorias
-    $victoriasCruz = victoriasDeSimbolos($historialJuegos, 'CRUZ');
-    $victoriasCirculo = victoriasDeSimbolos ($historialJuegos, 'CIRCULO');
+    $cruz = "X";
+    $circulo = "O";
+    $victoriasCruz = victoriasDeSimbolos($historialJuegos, $cruz);
+    $victoriasCirculo = victoriasDeSimbolos ($historialJuegos, $circulo);
     $victorias = $victoriasCruz + $victoriasCirculo;
     return $victorias;
 }
@@ -343,29 +345,29 @@ do{
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            echo "Ingrese el número de partida que desea ver: ";
+            echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
             mostrarJuego($arrayGames, $numeroPartida);
             break;
         case 3:
-            echo "Ingrese el nombre del jugador que desea buscar: ";
+            echo "Ingrese el nombre del jugador que desea buscar: \n";
             $jugador = strtoupper(trim(fgets(STDIN)));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             if ($res > -1) {
               mostrarJuego($arrayGames, $res);
             } else {
-                echo "El jugador ". $jugador. " no gano ningun juego\n";
+                echo "El jugador ". $jugador. " no gano ningun juego.\n";
             }
             
             break;
         case 4:
             //Mostrar porcentaje de Juegos ganados aaaaaa
             $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
-            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
+            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
             //Mostrar resumen de jugador
-            echo "Ingrese el nombre del jugador: ";
+            echo "Ingrese el nombre del jugador: \n";
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
             $resumen = resumenJugador($arrayGames, $nombreJugador);
             echo " *********************************** \n";
