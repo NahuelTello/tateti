@@ -8,6 +8,7 @@ include_once("tateti.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* Tello Parra, Matias Nahuel. FAI 2904 . TUDW . matias.tello@est.fi.uncoma.edu.ar . NahuelTello*/
 /* Cárcamo, Milagros Sofia - FAI 2987  - TUDW  - milagros.carcamo@est.fi.uncoma.edu.ar  - milicarcamo */
+/* Rosales, Martina Milagros - FAI 2752 - TUDW - martina.rosales@est.fi.uncoma.edu.ar - MartinaRosalesF */
 
 
 
@@ -93,8 +94,13 @@ function primerVictoria($historialJuegos, $nombreJugadorBuscado){
  * retorna el resumen del jugador
  * 
  * @param array $historialJuegos
+<<<<<<< HEAD
+ * @param String $nombreJugador
+ * @return 
+=======
  * @param Strgin $nombreJugador
  * @return no retorna
+>>>>>>> df50d0847c1c71e540f181e493b9e1a757bc6aea
  */
 function resumenJugador ($historialJuegos, $nombreJugador){
     //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
@@ -245,16 +251,14 @@ function victoriasDeSimbolos ($coleccionJuegos, $simbolo) {
     }
     return $juegosGanadosSimbolo ;
 }
-//Estas 3 lineas de abajo las hice para probar el modulo, ¡¡¡BORRAR DESPUES!!!
-//$coleccJuegos = cargarJuegos() ; //Aca invoco al modulo que hizo Marti, para ver el historial de juegos
-/* $juegosGanados = victoriasDeSimbolos($coleccJuegos, $simboloFinal ) ;
-echo "La cant de victorias del simbolo ". $simboloFinal . " es: " . $juegosGanados . "\n" ; */
+
 
 /**
  * Función 11 -> "Explicacion 3"
  * Implementar una función SIN RETORNO que, dada una colección de juegos, 
  * muestre la colección de juegos ordenado por el nombre del jugador cuyo símbolo es O.
  * @param array $coleccionDeJuegos
+ * 
  */
 function ordenaJugadoresO ( $coleccionDeJuegos) {
     
