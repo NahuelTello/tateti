@@ -356,7 +356,6 @@ do{
             echo "Ingrese el nombre del jugador que desea buscar: ";
             $jugador = trim(fgets(STDIN));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
-            echo $res."\n";
             if ($res > -1) {
                 echo "**************************************** \n";
                 echo "Juego TATETI: ". $res." (". $res+1 .")\n";
@@ -393,7 +392,7 @@ do{
             echo "Gracias por jugar!";
             break;
         }
-        echo "¿Desea volver a ver el menú? (si = 1/ no = 7 (salir).\n";
+        echo "¿Desea volver a ver el menú? ( si = 1 / no = 7 (salir) )\n";
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
 
