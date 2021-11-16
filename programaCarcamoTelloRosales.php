@@ -361,6 +361,8 @@ do {
             break;
         case 4:
             //echo "4) Mostrar porcentaje de Juegos ganados \n";
+            $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
+            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
             break;
         case 5:
             //echo "5) Mostrar resumen de jugador \n";
