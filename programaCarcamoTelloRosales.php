@@ -130,17 +130,30 @@ function resumenJugador ($historialJuegos, $nombreJugador){
         "juegosEmpatados" => $juegosEmpatados,
         "puntosAcumulados" => $puntosAcumulados
     ];
-    
+    /* 
     echo " *********************************** \n";
     echo " Jugador: " .$resJugador["nombre"]."\n";
     echo " Gano: ".$resJugador["juegosGanados"]." juegos\n";
     echo " Perdio: ".$resJugador["juegosPerdidos"]." juegos\n";
     echo " Empato: ".$resJugador["juegosEmpatados"]." juegos\n";
     echo " Total de puntos acumulados: ".$resJugador["puntosAcumulados"]." puntos"."\n";
-    echo " *********************************** \n";
+    echo " *********************************** \n"; */
+    return $resJugador;
     
 }
 
+/**
+ * Verifica si existe un juego cargado y retorna true o false
+ * 
+ * @param array $historialJuegos
+ * @return boolean
+ */
+function existeJuego($historialJuegos){
+    $existe = false;
+    foreach ($historialJuegos as $indice) {
+        
+    }
+}
 /************ PARTE NAHUEL ************/
 
 /************ PARTE MARTINA ************/
@@ -369,15 +382,22 @@ do {
             
             break;
         case 4:
-            //echo "4) Mostrar porcentaje de Juegos ganados \n";
+            //Mostrar porcentaje de Juegos ganados 
             $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
             echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
             break;
         case 5:
-            //echo "5) Mostrar resumen de jugador \n";
+            //Mostrar resumen de jugador
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
-            resumenJugador($arrayGames, $nombreJugador);
+            $resumen = resumenJugador($arrayGames, $nombreJugador);
+            echo " *********************************** \n";
+            echo " Jugador: " .$resumen["nombre"]."\n";
+            echo " Gano: ".$resumen["juegosGanados"]." juegos\n";
+            echo " Perdio: ".$resumen["juegosPerdidos"]." juegos\n";
+            echo " Empato: ".$resumen["juegosEmpatados"]." juegos\n";
+            echo " Total de puntos acumulados: ".$resumen["puntosAcumulados"]." puntos"."\n";
+            echo " *********************************** \n";
             break;
         case 6:
             $odenDeO = ordenaJugadoresO($arrayGames);
