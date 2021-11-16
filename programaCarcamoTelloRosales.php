@@ -73,9 +73,8 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
                 $indice = $i;
                 $corte = true;
             }
-        } else {
-            $i = $i + 1;
         }
+        $i++;
     }
     return $indice;
 }
@@ -317,7 +316,7 @@ do {
             $jugador = trim(fgets(STDIN));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             echo $res;
-            if ($res != -1) {
+            if ($res > -1) {
                 echo "**************************************** \n";
                 echo "Juego TATETI: ". $res." (". $res+1 .")\n";
                 echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
