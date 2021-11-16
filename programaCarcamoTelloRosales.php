@@ -121,14 +121,6 @@ function resumenJugador ($historialJuegos, $nombreJugador){
         "juegosEmpatados" => $juegosEmpatados,
         "puntosAcumulados" => $puntosAcumulados
     ];
-    /* 
-    echo " *********************************** \n";
-    echo " Jugador: " .$resJugador["nombre"]."\n";
-    echo " Gano: ".$resJugador["juegosGanados"]." juegos\n";
-    echo " Perdio: ".$resJugador["juegosPerdidos"]." juegos\n";
-    echo " Empato: ".$resJugador["juegosEmpatados"]." juegos\n";
-    echo " Total de puntos acumulados: ".$resJugador["puntosAcumulados"]." puntos"."\n";
-    echo " *********************************** \n"; */
     return $resJugador;
     
 }
