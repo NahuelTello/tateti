@@ -358,7 +358,7 @@ do{
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             if ($res > -1) {
                 echo "**************************************** \n";
-                echo "Juego TATETI: ". $res." (". $res+1 .")\n";
+                echo "Juego TATETI: ". $res." ( gano )\n";
                 echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
                 echo "jugador O: ". $arrayGames[$res]["jugadorO"]. " obtuvo ". $arrayGames[$res]["puntosO"]. " puntos.\n";
                 echo "**************************************** \n";
