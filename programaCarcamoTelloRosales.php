@@ -189,6 +189,37 @@ function mostrarJuego($historialJuegos){
     echo "**************************************** \n";
 }
 
+/** 
+ * Calcula el porcentaje de victorias respecto al total de partidas jugadas
+ * @param int $victorias
+ * @param float $porcentaje
+ * @return float
+ */
+function porcentajeVictorias($historialJuegos){
+    $victorias = cantidadVictorias($historialJuegos);
+    $porcentaje = ($victorias*100)/count($historialJuegos);
+    return $porcentaje;
+}
+
+/**
+ * Contea la cantidad de veces que se ganó una partida
+ * respecto al total de partidas de tateti jugadas.
+ * @param int $victorias
+ * @return int
+ */
+function cantidadVictorias ($historialJuegos){
+ 
+    $victorias = 0;
+
+    foreach ($historialJuegos as $indice => $elemento) {
+        if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
+            $victorias = $victorias;
+        } else {
+            $victorias ++ ;
+        }
+    }
+    return $victorias;
+}
 
 /************ PARTE MARTINA ************/
 
