@@ -10,9 +10,6 @@ include_once("tateti.php");
 /* Cárcamo, Milagros Sofia - FAI 2987  - TUDW  - milagros.carcamo@est.fi.uncoma.edu.ar  - milicarcamo */
 /* Rosales, Martina Milagros - FAI 2752 - TUDW - martina.rosales@est.fi.uncoma.edu.ar - MartinaRosalesF */
 
-
-
-
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
