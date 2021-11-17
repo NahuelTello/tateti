@@ -255,8 +255,6 @@ function seleccionarSimbolo () {
     return $simbolo ;
 }
 
-
-
 /**
  * Funcion 10 --> "Explicacion 3"
  * Dada una colección de juegos y un símbolo (X o O) retorna la cantidad de juegos ganados por el símbolo ingresado por parámetro.
@@ -278,7 +276,6 @@ function victoriasDeSimbolos ($coleccionJuegos, $simbolo) {
     return $juegosGanadosSimbolo ;
 }
 
-
 /**
  * Función 11 -> "Explicacion 3"
  * Implementar una función SIN RETORNO que, dada una colección de juegos, 
@@ -297,7 +294,6 @@ function ordenaJugadoresO ( $coleccionDeJuegos) {
     uasort($coleccionDeJuegos, 'cmp') ;
     print_r($coleccionDeJuegos) ;
 }
-
 
 /**
  * Esta funcion se va a utilizar para poder comparar los string de la funcion de arriba 
