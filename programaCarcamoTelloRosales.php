@@ -171,7 +171,7 @@ function cargarJuegos (){
  */
 function agregarJuego ($historialJuegos, $juego){
     array_push($historialJuegos, $juego);
-    //utilizamos la función array_push: recibe dos elementos ($arreglo, $variable),
+    //utilicé la función array_push: recibe dos elementos ($arreglo, $variable),
     //y agrega al arreglo ingresado, la variable ingresada en la función.
     return $historialJuegos;
 }
@@ -184,51 +184,72 @@ function agregarJuego ($historialJuegos, $juego){
  */
 function mostrarJuego($historialJuegos, $nroPartida){
     // string $resultado
-    if ($historialJuegos[$nroPartida]["puntosX"] == $historialJuegos[$nroPartida]["puntosO"]){
+    // se invoca la función validarRango para asegurarme de que el número ingresado coincide
+    // con la cantidad de elementos en el arreglo $historialJuegos
+    $numero = validarRango($nroPartida,0,$historialJuegos);
+    // mediante una alternativa se averigua si ganó X, ganó O, o fue empate.
+    if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
         $resultado = "empate";
-    }else if ($historialJuegos[$nroPartida]["puntosX"] < $historialJuegos[$nroPartida]["puntosO"]){
+    }else if ($historialJuegos[$numero]["puntosX"] < $historialJuegos[$numero]["puntosO"]){
         $resultado = "ganó O";
     }else{
         $resultado = "ganó X";
     }
+    // se imprimen en pantalla los datos de la partida ingresada por el usuario
     echo "**************************************** \n";
-    echo "Juego TATETI: ". $nroPartida." (". $resultado. ") \n";
-    echo "Jugador X: ". $historialJuegos[$nroPartida]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.\n";
-    echo "jugador O: ". $historialJuegos[$nroPartida]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
+    echo "Juego TATETI: ". ($numero+1)." (". $resultado. ") \n";
+    echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.\n";
+    echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
     echo "**************************************** \n";
 }
 
 /** 
+ * Función agregada, se usa en la opción 4 del menú.
  * Calcula el porcentaje de victorias respecto al total de partidas jugadas
  * @param int $victorias
  * @param float $porcentaje
  * @return float
  */
 function porcentajeVictorias($historialJuegos){
+    // se invoca la función que contea las victorias totales entre todas las partidas guardadas.
     $victorias = cantidadVictorias($historialJuegos);
     $porcentaje = ($victorias*100)/count($historialJuegos);
     return $porcentaje;
 }
 
 /**
+ * Función 9 <-- Explicación 3
  * Contea la cantidad de veces que se ganó una partida
  * respecto al total de partidas de tateti jugadas.
- * @param int $victorias
+ * @param array $historialJuegos
  * @return int
  */
 function cantidadVictorias ($historialJuegos){
-    $victorias = 0;
-
-    foreach ($historialJuegos as $indice => $elemento) {
-        if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
-            $victorias = $victorias;
-        } else {
-            $victorias ++ ;
-        }
-    }
+    // int $victoriasCruz, $victoriasCirculo, $victorias
+    $cruz = "X";
+    $circulo = "O";
+    // se invoca la función victoriasDeSimbolos para contear las victorias por símbolo.
+    $victoriasCruz = victoriasDeSimbolos($historialJuegos, $cruz);
+    $victoriasCirculo = victoriasDeSimbolos ($historialJuegos, $circulo);
+    $victorias = $victoriasCruz + $victoriasCirculo;
     return $victorias;
 }
-
+/**
+ * Valida el número ingresado, con respecto al mínimo y máximo ingresados, 
+ * reciclé una función del programa tateti.php
+ * @param int $min
+ * @param int $max
+ * @param int $numero
+ * @return int 
+ */
+function validarRango($numero, $min, $max)
+{
+    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
+        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        $numero = trim(fgets(STDIN));
+    }
+    return $numero;
+}
 /************ PARTE MARTINA ************/
 
 /************ PARTE MILAGROS ************/
@@ -344,33 +365,29 @@ do{
             $arrayGames = agregarJuego($arrayGames, $partida);
             break;
         case 2:
-            echo "Ingrese el número de partida que desea ver: ";
+            echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
             mostrarJuego($arrayGames, $numeroPartida);
             break;
         case 3:
-            echo "Ingrese el nombre del jugador que desea buscar: ";
+            echo "Ingrese el nombre del jugador que desea buscar: \n";
             $jugador = strtoupper(trim(fgets(STDIN)));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             if ($res > -1) {
-                echo "**************************************** \n";
-                echo "Juego TATETI: ". $res." ( gano )\n";
-                echo "Jugador X: ". $arrayGames[$res]["jugadorX"]. " obtuvo ". $arrayGames[$res]["puntosX"]. " puntos.\n";
-                echo "jugador O: ". $arrayGames[$res]["jugadorO"]. " obtuvo ". $arrayGames[$res]["puntosO"]. " puntos.\n";
-                echo "**************************************** \n";
+              mostrarJuego($arrayGames, $res);
             } else {
-                echo "El jugador ". $jugador. " no gano ningun juego";
+                echo "El jugador ". $jugador. " no gano ningun juego.\n";
             }
             
             break;
         case 4:
             //Mostrar porcentaje de Juegos ganados aaaaaa
             $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
-            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%";
+            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
             //Mostrar resumen de jugador
-            echo "Ingrese el nombre del jugador: ";
+            echo "Ingrese el nombre del jugador: \n";
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
             $resumen = resumenJugador($arrayGames, $nombreJugador);
             echo " *********************************** \n";
