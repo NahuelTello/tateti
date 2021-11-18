@@ -5,7 +5,7 @@ Juego del tateti desarrollado en Introducción a la Programación (FAI)
 Introducción a la Programación
 Tecnicaturas
 FAI
-Universidad del Comahue
+Universidad Nacional del Comahue
 
 ## Integrantes del Equipo
     Grupo 8
