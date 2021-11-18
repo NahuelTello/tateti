@@ -22,8 +22,8 @@ include_once("tateti.php");
  * menu debe ser "Salir"
  * @return int
  */
-function seleccionarOpcion() { //Ingresamos la opcion del menu.... Debe llamarse seleccionarOpcion, le puse opciones xq me invoca al otro
-    //INT $opcion 
+function seleccionarOpcion() { 
+    //int $opcion 
     echo "\n  Menú de opciones \n
     1) Jugar al tateti \n
     2) Mostrar un juego \n
@@ -46,13 +46,12 @@ function seleccionarOpcion() { //Ingresamos la opcion del menu.... Debe llamarse
  * @param int $numMax . El num Max seria 7
  */
 function validarOpcion ($numMin, $numMax) {
-    //echo "Ingrese una opcion, entre 1 y 7: " ;
     $opcionValida = solicitarNumeroEntre($numMin, $numMax) ; //Invoco la funcion del programa "tateti" y me ahorro de hacer un if con la condicion de los rangos
     return $opcionValida ;
 }
 
 /**
- * Busca la primer victoria de un jugador
+ * Busca la primer victoria de un jugador ingresado por pantalla
  * @param array $historialJuegos
  * @param String $jugadorBuscado
  * @return int
@@ -87,7 +86,7 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
  * 
  * @param array $historialJuegos
  * @param String $nombreJugador
- * @return 
+ * @return array
  */
 function resumenJugador ($historialJuegos, $nombreJugador){
     //int $juegosGanados, $juegosPerdidos, $juegosEmpatados, $puntosAcumulados
@@ -230,8 +229,7 @@ function cantidadVictorias ($historialJuegos){
  * @param int $numero
  * @return int 
  */
-function validarRango($numero, $min, $max)
-{
+function validarRango($numero, $min, $max){
     while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
@@ -330,17 +328,16 @@ function cmp ($a, $b) {
 /**************************************/
 
 //Declaración de variables:
-
+/** 
+ * array $arregloPartidas, $partida, $resumen
+ * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria
+ * float $porcentajeJuegosGanados
+ * String $jugador, $nombreJugador
+*/
 
 //Inicialización de variables:
-$arrayGames = cargarJuegos();
-
-//$arregloTateti = [];
+$arregloPartidas = cargarJuegos();
 //Proceso:
-
-//$juego = jugar();
-//print_r($juego);
-//imprimirResultado($juego);
 
 // *********************** MENU ***************** //
 do{
@@ -350,34 +347,34 @@ do{
         case 1:
             $partida = jugar();
             imprimirResultado($partida);
-            $arrayGames = agregarJuego($arrayGames, $partida);
+            $arregloPartidas = agregarJuego($arregloPartidas, $partida);
             break;
         case 2:
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
-            mostrarJuego($arrayGames, $numeroPartida);
+            mostrarJuego($arregloPartidas, $numeroPartida);
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: \n";
             $jugador = strtoupper(trim(fgets(STDIN)));
-            $res = buscaPrimerVictoria($arrayGames,$jugador);
-            if ($res > -1) {
-                mostrarJuego($arrayGames, $res);
+            $numVictoria = buscaPrimerVictoria($arregloPartidas,$jugador);
+            if ($numVictoria > -1) {
+                mostrarJuego($arregloPartidas, $numVictoria);
             } else {
                 echo "El jugador ". $jugador. " no gano ningun juego.\n";
             }
             
             break;
         case 4:
-            //Mostrar porcentaje de Juegos ganados aaaaaa
-            $porcentajeJuegosGanados = porcentajeVictorias($arrayGames);
+            //Mostrar porcentaje de Juegos ganados 
+            $porcentajeJuegosGanados = porcentajeVictorias($arregloPartidas);
             echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
             //Mostrar resumen de jugador
             echo "Ingrese el nombre del jugador: \n";
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
-            $resumen = resumenJugador($arrayGames, $nombreJugador);
+            $resumen = resumenJugador($arregloPartidas, $nombreJugador);
             echo " *********************************** \n";
             echo " Jugador: " .$resumen["nombre"]."\n";
             echo " Gano: ".$resumen["juegosGanados"]." juegos\n";
@@ -387,13 +384,13 @@ do{
             echo " *********************************** \n";
             break;
         case 6:
-            $odenDeO = ordenaJugadoresO($arrayGames);
+            $odenDeO = ordenaJugadoresO($arregloPartidas);
             break;
         case 7:
             echo "Gracias por jugar!";
             break;
         }
-        echo "¿Desea volver a ver el menú? ( si = 1 / no = 7 (salir) )\n";
+        echo "¿Desea volver a ver el menú? ( si = 1-6 / no = 7 (salir) )\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
 
