@@ -125,18 +125,6 @@ function resumenJugador ($historialJuegos, $nombreJugador){
     
 }
 
-/**
- * Verifica si existe un juego cargado y retorna true o false
- * 
- * @param array $historialJuegos
- * @return boolean
- */
-function existeJuego($historialJuegos){
-    $existe = false;
-    foreach ($historialJuegos as $indice) {
-        
-    }
-}
 /************ PARTE NAHUEL ************/
 
 /************ PARTE MARTINA ************/
@@ -346,6 +334,7 @@ function cmp ($a, $b) {
 
 //Inicialización de variables:
 $arrayGames = cargarJuegos();
+
 //$arregloTateti = [];
 //Proceso:
 
@@ -359,7 +348,6 @@ do{
     $opcion = $numeroMenu;
     switch ($opcion) {
         case 1:
-            //jugar();
             $partida = jugar();
             imprimirResultado($partida);
             $arrayGames = agregarJuego($arrayGames, $partida);
@@ -374,7 +362,7 @@ do{
             $jugador = strtoupper(trim(fgets(STDIN)));
             $res = buscaPrimerVictoria($arrayGames,$jugador);
             if ($res > -1) {
-              mostrarJuego($arrayGames, $res);
+                mostrarJuego($arrayGames, $res);
             } else {
                 echo "El jugador ". $jugador. " no gano ningun juego.\n";
             }
