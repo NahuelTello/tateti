@@ -197,10 +197,13 @@ function mostrarJuego($historialJuegos, $numero){
  * @param string $simbolo
  * @return float
  */
-function porcentajeVictorias($historialJuegos, $simbolo){
+function porcentajeVictorias($historialJuegos, $simbolo){ //Porque aca uno de los parametros formales es $historialJuegos, 
+                                                         //no deberia ser $victorias como esta declarado arriba en la documentacion??
+
     // se invoca la función que contea las victorias totales entre todas las partidas guardadas.
     $victorias = victoriasDeSimbolos($historialJuegos, $simbolo);
-    $porcentaje = ($victorias*100)/count($historialJuegos);
+    $cantVictorias = cantidadVictorias($historialJuegos) ;
+    $porcentaje = ($victorias*100) / $cantVictorias;
     return $porcentaje;
 }
 
@@ -237,7 +240,7 @@ function cantidadVictorias ($historialJuegos){
 function seleccionarSimbolo () {
     //STRING $simbolo, $simboloAux
     do {
-        echo "Ingrese el simbolo con el que desea jugar (X / O): " ;
+        
         //La funcion predefinida "strtoupper" que utilizamos abajo, devuelve el string ingresado con todos los caracteres en mayuscula
         $simbolo = strtoupper(trim(fgets(STDIN))); 
         $simboloAux = "" ; //Lo inicilizo con "" ya que si ingresa un simbolo invalido va a tirar el cartel de 'variable indefinida'
@@ -362,10 +365,10 @@ do{
             break;
         case 4:
             //Mostrar porcentaje de Juegos ganados según símbolo
-            echo "Ingrese el símbolo cuyo porcentaje de victorias desea calcular.\n";
-            $simbolo = strtoupper(trim(fgets(STDIN))); 
+            echo "Ingrese el símbolo (X / O), cuyo porcentaje de victorias desea calcular: \n";
+            $simbolo = seleccionarSimbolo() ;
             $porcentajeJuegosGanados = porcentajeVictorias($arregloPartidas, $simbolo);
-            echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%\n";
+            echo "El porcentaje de victorias del simbolo ". $simbolo . " es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
             //Mostrar resumen de jugador
@@ -384,7 +387,7 @@ do{
             $odenDeO = ordenaJugadoresO($arregloPartidas);
             break;
         case 7:
-            echo "Gracias por jugar!";
+            echo "Gracias por jugar! \n";
             break;
         }
         echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
