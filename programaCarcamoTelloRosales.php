@@ -74,8 +74,9 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
                 $indice = $i;
                 $corte = false;
             }
-        }
+        }else {
         $i++;
+        }
     }
     return $indice;
 }
@@ -157,9 +158,11 @@ function cargarJuegos (){
  * @return array
  */
 function agregarJuego ($historialJuegos, $juego){
-    array_push($historialJuegos, $juego);
-    //utilicé la función array_push: recibe dos elementos ($arreglo, $variable),
-    //y agrega al arreglo ingresado, la variable ingresada en la función.
+    $nro =  count ($historialJuegos)+1;
+   $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
+   $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
+   $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
+   $historialJuegos[$nro]["puntosO"] = $juego ["puntosCirculo"];
     return $historialJuegos;
 }
 
@@ -169,37 +172,34 @@ function agregarJuego ($historialJuegos, $juego){
  * @param int $nroPartida
  * @param array $historialJuegos //Seria historialJuegos
  */
-function mostrarJuego($historialJuegos, $nroPartida){
+function mostrarJuego($historialJuegos, $numero){
     // string $resultado
-    // se invoca la función validarRango para asegurarme de que el número ingresado coincide
-    // con la cantidad de elementos en el arreglo $historialJuegos
-    $numero = validarRango($nroPartida,0,$historialJuegos);
-    // mediante una alternativa se averigua si ganó X, ganó O, o fue empate.
-    if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
-        $resultado = "empate";
-    }else if ($historialJuegos[$numero]["puntosX"] < $historialJuegos[$numero]["puntosO"]){
-        $resultado = "ganó O";
-    }else{
-        $resultado = "ganó X";
+        // mediante una alternativa se averigua si ganó X, ganó O, o fue empate.
+        if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
+            $resultado = "empate";
+        }else if ($historialJuegos[$numero]["puntosX"] < $historialJuegos[$numero]["puntosO"]){
+             $resultado = "ganó O";
+        }else{
+            $resultado = "ganó X";
+        }
+        // se imprimen en pantalla los datos de la partida ingresada por el usuario
+        echo "**************************************** \n";
+        echo "Juego TATETI: ". ($numero+1)." (". $resultado. ") \n";
+        echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$numero]["puntosX"]. " puntos.\n";
+        echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$numero]["puntosO"]. " puntos.\n";
+        echo "**************************************** \n";
     }
-    // se imprimen en pantalla los datos de la partida ingresada por el usuario
-    echo "**************************************** \n";
-    echo "Juego TATETI: ". ($numero+1)." (". $resultado. ") \n";
-    echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosX"]. " puntos.\n";
-    echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$nroPartida]["puntosO"]. " puntos.\n";
-    echo "**************************************** \n";
-}
 
 /** 
  * Función agregada, se usa en la opción 4 del menú.
  * Calcula el porcentaje de victorias respecto al total de partidas jugadas
  * @param int $victorias
- * @param float $porcentaje
+ * @param string $simbolo
  * @return float
  */
-function porcentajeVictorias($historialJuegos){
+function porcentajeVictorias($historialJuegos, $simbolo){
     // se invoca la función que contea las victorias totales entre todas las partidas guardadas.
-    $victorias = cantidadVictorias($historialJuegos);
+    $victorias = victoriasDeSimbolos($historialJuegos, $simbolo);
     $porcentaje = ($victorias*100)/count($historialJuegos);
     return $porcentaje;
 }
@@ -212,30 +212,18 @@ function porcentajeVictorias($historialJuegos){
  * @return int
  */
 function cantidadVictorias ($historialJuegos){
-    // int $victoriasCruz, $victoriasCirculo, $victorias
-    $cruz = "X";
-    $circulo = "O";
-    // se invoca la función victoriasDeSimbolos para contear las victorias por símbolo.
-    $victoriasCruz = victoriasDeSimbolos($historialJuegos, $cruz);
-    $victoriasCirculo = victoriasDeSimbolos ($historialJuegos, $circulo);
-    $victorias = $victoriasCruz + $victoriasCirculo;
+    $victorias = 0;
+
+    foreach ($historialJuegos as $indice => $elemento) {
+        if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
+            $victorias = $victorias;
+        } else {
+            $victorias ++ ;
+        }
+    }
     return $victorias;
 }
-/**
- * Valida el número ingresado, con respecto al mínimo y máximo ingresados, 
- * reciclé una función del programa tateti.php
- * @param int $min
- * @param int $max
- * @param int $numero
- * @return int 
- */
-function validarRango($numero, $min, $max){
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-    }
-    return $numero;
-}
+
 /************ PARTE MARTINA ************/
 
 /************ PARTE MILAGROS ************/
@@ -343,8 +331,10 @@ $arregloPartidas = cargarJuegos();
 do{
     $numeroMenu = seleccionarOpcion ();
     $opcion = $numeroMenu;
+    $cantidadPartidas = count ($arregloPartidas);
     switch ($opcion) {
         case 1:
+            echo "PARTIDA NUEMERO ". ($cantidadPartidas + 1)."\n";
             $partida = jugar();
             imprimirResultado($partida);
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
@@ -352,7 +342,12 @@ do{
         case 2:
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
-            mostrarJuego($arregloPartidas, $numeroPartida);
+            $rangoMaximo = count ($arregloPartidas);
+            if ($numeroPartida > 0 && $numeroPartida < $rangoMaximo){
+             mostrarJuego($arregloPartidas, $numeroPartida-1);
+            }else{
+                echo "Esa partida no existe. \n";
+            }
             break;
         case 3:
             echo "Ingrese el nombre del jugador que desea buscar: \n";
@@ -366,8 +361,10 @@ do{
             
             break;
         case 4:
-            //Mostrar porcentaje de Juegos ganados 
-            $porcentajeJuegosGanados = porcentajeVictorias($arregloPartidas);
+            //Mostrar porcentaje de Juegos ganados según símbolo
+            echo "Ingrese el símbolo cuyo porcentaje de victorias desea calcular.\n";
+            $simbolo = strtoupper(trim(fgets(STDIN))); 
+            $porcentajeJuegosGanados = porcentajeVictorias($arregloPartidas, $simbolo);
             echo "El porcentaje de victorias es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
@@ -390,7 +387,7 @@ do{
             echo "Gracias por jugar!";
             break;
         }
-        echo "¿Desea volver a ver el menú? ( si = 1-6 / no = 7 (salir) )\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
+        echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
 
