@@ -193,17 +193,15 @@ function mostrarJuego($historialJuegos, $numero){
 /** 
  * Función agregada, se usa en la opción 4 del menú.
  * Calcula el porcentaje de victorias respecto al total de partidas jugadas
- * @param int $victorias
+ * @param array $historialJuegos
  * @param string $simbolo
  * @return float
  */
-function porcentajeVictorias($historialJuegos, $simbolo){ //Porque aca uno de los parametros formales es $historialJuegos, 
-                                                         //no deberia ser $victorias como esta declarado arriba en la documentacion??
-
+function porcentajeVictorias($historialJuegos, $simbolo){ 
     // se invoca la función que contea las victorias totales entre todas las partidas guardadas.
     $victorias = victoriasDeSimbolos($historialJuegos, $simbolo);
     $cantVictorias = cantidadVictorias($historialJuegos) ;
-    $porcentaje = ($victorias*100) / $cantVictorias;
+    $porcentaje = ($victorias*100) / ($cantVictorias);
     return $porcentaje;
 }
 
