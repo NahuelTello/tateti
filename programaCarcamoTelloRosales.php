@@ -386,10 +386,11 @@ do{
         case 6:
             $odenDeO = ordenaJugadoresO($arregloPartidas);
             break;
-        case 7:
+        /* case 7:
             echo "Gracias por jugar! \n";
-            break;
+            break; */
         }
+        echo "---------------------------------------------------------------------------------- \n";
         echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
