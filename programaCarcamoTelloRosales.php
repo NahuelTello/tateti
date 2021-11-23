@@ -159,10 +159,10 @@ function cargarJuegos (){
  */
 function agregarJuego ($historialJuegos, $juego){
     $nro =  count ($historialJuegos);
-   $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
-   $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
-   $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
-   $historialJuegos[$nro]["puntosO"] = $juego ["puntosCirculo"];
+    $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
+    $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
+    $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
+    $historialJuegos[$nro]["puntosO"] = $juego ["puntosCirculo"];
     return $historialJuegos;
 }
 
@@ -178,7 +178,7 @@ function mostrarJuego($historialJuegos, $numero){
         if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
             $resultado = "empate";
         }else if ($historialJuegos[$numero]["puntosX"] < $historialJuegos[$numero]["puntosO"]){
-             $resultado = "ganó O";
+            $resultado = "ganó O";
         }else{
             $resultado = "ganó X";
         }
@@ -188,7 +188,8 @@ function mostrarJuego($historialJuegos, $numero){
         echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$numero]["puntosX"]. " puntos.\n";
         echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$numero]["puntosO"]. " puntos.\n";
         echo "**************************************** \n";
-    }
+}
+
 
 /** 
  * Función agregada, se usa en la opción 4 del menú.
@@ -335,17 +336,18 @@ do{
     $cantidadPartidas = count ($arregloPartidas);
     switch ($opcion) {
         case 1:
-            echo "PARTIDA NUEMERO ". ($cantidadPartidas + 1)."\n";
+            echo "PARTIDA NUMERO ". ($cantidadPartidas + 1)."\n";
             $partida = jugar();
             imprimirResultado($partida);
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
+            print_r($arregloPartidas);
             break;
         case 2:
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
             $rangoMaximo = count ($arregloPartidas);
-            if ($numeroPartida > 0 && $numeroPartida <= $rangoMaximo){
-             mostrarJuego($arregloPartidas, $numeroPartida-1);
+            if ($numeroPartida > 0 && $numeroPartida < $rangoMaximo){
+                mostrarJuego($arregloPartidas, $numeroPartida-1);
             }else{
                 echo "Esa partida no existe. \n";
             }
@@ -384,10 +386,11 @@ do{
         case 6:
             $odenDeO = ordenaJugadoresO($arregloPartidas);
             break;
-        case 7:
+        /* case 7:
             echo "Gracias por jugar! \n";
-            break;
+            break; */
         }
+        echo "---------------------------------------------------------------------------------- \n";
         echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; // 1-6 para decir que entre 1 y 6 se puede ingresar de nuevo al menu
         $opcion = trim(fgets(STDIN));
     }while ($opcion != 7);
