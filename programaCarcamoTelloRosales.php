@@ -357,7 +357,6 @@ do{
             $partida = jugar();
             imprimirResultado($partida);
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
-            print_r($arregloPartidas);
             break;
         case 2:
             echo "Ingrese el número de partida que desea ver: \n";
