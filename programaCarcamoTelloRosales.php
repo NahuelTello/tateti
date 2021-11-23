@@ -158,7 +158,7 @@ function cargarJuegos (){
  * @return array
  */
 function agregarJuego ($historialJuegos, $juego){
-    $nro =  count ($historialJuegos)+1;
+    $nro =  count ($historialJuegos);
    $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
    $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
    $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
@@ -344,7 +344,7 @@ do{
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
             $rangoMaximo = count ($arregloPartidas);
-            if ($numeroPartida > 0 && $numeroPartida < $rangoMaximo){
+            if ($numeroPartida > 0 && $numeroPartida <= $rangoMaximo){
              mostrarJuego($arregloPartidas, $numeroPartida-1);
             }else{
                 echo "Esa partida no existe. \n";
