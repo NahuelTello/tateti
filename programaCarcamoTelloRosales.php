@@ -98,18 +98,28 @@ function resumenJugador ($historialJuegos, $nombreJugador){
     $puntosAcumulados = 0;
 
     foreach ($historialJuegos as $indice => $elemento) {
-        if (($historialJuegos[$indice]["jugadorX"] == $nombreJugador) ||($historialJuegos[$indice]["jugadorO"] == $nombreJugador) ) {
+        if ($historialJuegos[$indice]["jugadorX"] == $nombreJugador){
         
-            if ( ( $historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ) ) {
+            if  ($historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ){
                 $juegosGanados = $juegosGanados + 1;
-                $puntosAcumulados = $historialJuegos [$indice]["puntosX"];
-                $puntosAcumulados = $puntosAcumulados + PTOS_GANADOR;
+                $puntosAcumulados = $puntosAcumulados + $historialJuegos [$indice]["puntosX"];
             } elseif (( $historialJuegos[$indice]["puntosX"] < $historialJuegos[$indice]["puntosO"] ) ) {
                 $juegosPerdidos = $juegosPerdidos + 1;
-                $puntosAcumulados = $puntosAcumulados + PTOS_PERDEDOR;
+                $puntosAcumulados = $puntosAcumulados; 
             } else {
                 $juegosEmpatados = $juegosEmpatados + 1;
-                $puntosAcumulados = $puntosAcumulados + PTOS_EMPATE;
+                $puntosAcumulados = $puntosAcumulados + 1;
+            }
+        }elseif ($historialJuegos[$indice]["jugadorO"] == $nombreJugador){
+            if ( ( $historialJuegos[$indice]["puntosO"] > $historialJuegos[$indice]["puntosX"] ) ) {
+                $juegosGanados = $juegosGanados + 1;
+                $puntosAcumulados = $puntosAcumulados + $historialJuegos [$indice]["puntosO"];
+            } elseif (( $historialJuegos[$indice]["puntosO"] < $historialJuegos[$indice]["puntosX"] ) ) {
+                $juegosPerdidos = $juegosPerdidos + 1;
+                $puntosAcumulados = $puntosAcumulados; 
+            } else {
+                $juegosEmpatados = $juegosEmpatados + 1;
+                $puntosAcumulados = $puntosAcumulados + 1;
             }
         }
     }
@@ -394,12 +404,12 @@ do{
             $odenDeO = ordenaJugadoresO($arregloPartidas);
             break; 
         }
-        echo "---------------------------------------------------------------------------------- \n";
         if ($opcion <> 7){
         echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; 
         $opcion = trim(fgets(STDIN));
         }
     }while ($opcion != 7);
     echo "Gracias por jugar! \n";
+    echo "---------------------------------------------------------------------------------- \n";
 
 
