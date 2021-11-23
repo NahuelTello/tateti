@@ -131,7 +131,7 @@ function resumenJugador ($historialJuegos, $nombreJugador){
 /**
  * Función 1 <-- Explicación 3
  *  Historial precargado de partidas de tateti.
- *  Los datos de las partidas inventadas se almacenaron en un arreglo multidimensional indexado,
+ * Los datos de las partidas inventadas se almacenaron en un arreglo multidimensional indexado,
  * que contiene múltiples arreglos asociativos. 
  * @return array 
  */
@@ -158,7 +158,9 @@ function cargarJuegos (){
  * @return array
  */
 function agregarJuego ($historialJuegos, $juego){
-    $nro =  count ($historialJuegos);
+    //Se utiliza la función count para conseguir el número de elementos almacenados en el arreglo $historialJuegos
+    $nro =  count($historialJuegos);
+    //Dicho número se utiliza para agregar un arreglo más al arreglo multidimensional $historialJuegos 
     $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
     $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
     $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
@@ -170,10 +172,10 @@ function agregarJuego ($historialJuegos, $juego){
  * Función 4 <-- Explicación 3
  * muestra los datos de determinada partida de tateti.
  * @param int $nroPartida
- * @param array $historialJuegos //Seria historialJuegos
+ * @param array $historialJuegos 
  */
 function mostrarJuego($historialJuegos, $numero){
-    // string $resultado
+    // STRING $resultado
         // mediante una alternativa se averigua si ganó X, ganó O, o fue empate.
         if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
             $resultado = "empate";
@@ -193,16 +195,18 @@ function mostrarJuego($historialJuegos, $numero){
 
 /** 
  * Función agregada, se usa en la opción 4 del menú.
- * Calcula el porcentaje de victorias respecto al total de partidas jugadas
+ * Calcula el porcentaje de victorias de un símbolo ingresado por el usuario
+ * respecto al total de partidas jugadas.
  * @param array $historialJuegos
  * @param string $simbolo
  * @return float
  */
 function porcentajeVictorias($historialJuegos, $simbolo){ 
-    // se invoca la función que contea las victorias totales entre todas las partidas guardadas.
-    $victorias = victoriasDeSimbolos($historialJuegos, $simbolo);
-    $cantVictorias = cantidadVictorias($historialJuegos) ;
-    $porcentaje = ($victorias*100) / ($cantVictorias);
+    // INT $victoriasSimbolo $victoriasTotales FLOAT $porcentaje
+    //Se invoca a la función que contea las victorias por símbolo, y luego a la que contea las victorias totales.
+    $victoriasSimbolo = victoriasDeSimbolos($historialJuegos, $simbolo);
+    $victoriasTotales = cantidadVictorias($historialJuegos) ;
+    $porcentaje = ($victoriasSimbolo*100) / ($victoriasTotales);
     return $porcentaje;
 }
 
@@ -214,12 +218,15 @@ function porcentajeVictorias($historialJuegos, $simbolo){
  * @return int
  */
 function cantidadVictorias ($historialJuegos){
+    //INT $victorias
     $victorias = 0;
-
+// Se utiliza una repetitiva foreach para realizar un recorrido exhaustivo en el arreglo
     foreach ($historialJuegos as $indice => $elemento) {
         if ($historialJuegos [$indice]["puntosX"]  == $historialJuegos [$indice]["puntosO"]){
+            //Si el número almacenado en "puntosX" es igual al número en "puntosO", entonces es empate, no se suman victorias
             $victorias = $victorias;
         } else {
+            //Caso contrario, se suma una victoria al contador.
             $victorias ++ ;
         }
     }
@@ -242,7 +249,7 @@ function seleccionarSimbolo () {
         
         //La funcion predefinida "strtoupper" que utilizamos abajo, devuelve el string ingresado con todos los caracteres en mayuscula
         $simbolo = strtoupper(trim(fgets(STDIN))); 
-        $simboloAux = "" ; //Lo inicilizo con "" ya que si ingresa un simbolo invalido va a tirar el cartel de 'variable indefinida'
+        $simboloAux = "" ; //Lo inicializo con "" ya que si ingresa un simbolo invalido va a tirar el cartel de 'variable indefinida'
         if (($simbolo == "X") || ($simbolo == "O")) {
             $simboloAux = $simbolo;
         }else {
