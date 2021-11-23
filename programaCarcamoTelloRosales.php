@@ -346,7 +346,7 @@ do{
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
             $rangoMaximo = count ($arregloPartidas);
-            if ($numeroPartida > 0 && $numeroPartida < $rangoMaximo){
+            if ($numeroPartida > 0 && $numeroPartida <= $rangoMaximo){
                 mostrarJuego($arregloPartidas, $numeroPartida-1);
             }else{
                 echo "Esa partida no existe. \n";
