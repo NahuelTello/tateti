@@ -51,7 +51,7 @@ function validarOpcion ($numMin, $numMax) {
 }
 
 /**
- * Busca la primer victoria de un jugador ingresado por pantalla
+ * Busca la primer victoria de un jugador ingresado por el usuario
  * @param array $historialJuegos
  * @param String $jugadorBuscado
  * @return int
@@ -63,25 +63,34 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
     $corte = true;
     $indice = -1;
     $cantPartidas = count ($historialJuegos);
+    //Se utiliza un recorrido parcial, que se corta cuando se encuentra una partida ganada por el jugador seleccionado.
     while (($i < $cantPartidas) && ($corte)){
+        //Se averigua si el jugador utilizó la X.
         if ($jugadorBuscado == $historialJuegos[$i]["jugadorX"]) {
             if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
+                //Se encontró la victoria, entonces se almacena el índice de la partida en la variable $indice
                 $indice = $i;
                 $corte = false;
             } else {
+                //No se halló una victoria, así que se le suma 1 al contador $i y la repetitiva continúa
                 $i++;
             }
+            //Se averigua si el jugador utilizó el O.
         } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
             if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
+                //Se encontró la victoria, entonces se almacena el índice de la partida en la variable $indice
                 $indice = $i;
                 $corte = false;
             }else{
+                //No se halló una victoria, así que se le suma 1 al contador $i y la repetitiva continúa
                 $i++;
             }
         }else {
+            //No se halló al jugador en esta partida, por lo tanto se le suma 1 al contador $i y la repetitiva sigue
         $i++;
         }
     }
+    //Se retorna la variable con un índice de una partida, o con el valor -1 en caso de no haberse encontrado ninguna victoria.
     return $indice;
 }
 
@@ -100,34 +109,42 @@ function resumenJugador ($historialJuegos, $nombreJugador){
     $juegosPerdidos = 0;
     $juegosEmpatados = 0;
     $puntosAcumulados = 0;
-
+    //Se utiliza un recorrido exhaustivo para encontrar cada partida en la que el jugador seleccionado participó
     foreach ($historialJuegos as $indice => $elemento) {
+        //Se verifica si el jugador utilizó la X
         if ($historialJuegos[$indice]["jugadorX"] == $nombreJugador){
-        
+            //Según el resultado de la partida, se le suma cierta cantidad de puntos.
             if  ($historialJuegos[$indice]["puntosX"] > $historialJuegos[$indice]["puntosO"] ){
+                 //Victoria del jugador X
                 $juegosGanados = $juegosGanados + 1;
                 $puntosAcumulados = $puntosAcumulados + $historialJuegos [$indice]["puntosX"];
             } elseif (( $historialJuegos[$indice]["puntosX"] < $historialJuegos[$indice]["puntosO"] ) ) {
+                //Derrota del jugador X
                 $juegosPerdidos = $juegosPerdidos + 1;
                 $puntosAcumulados = $puntosAcumulados; 
             } else {
+                //Empate
                 $juegosEmpatados = $juegosEmpatados + 1;
                 $puntosAcumulados = $puntosAcumulados + 1;
             }
+            //Si el jugador no eligió la X, entonces usó el O
         }elseif ($historialJuegos[$indice]["jugadorO"] == $nombreJugador){
             if ( ( $historialJuegos[$indice]["puntosO"] > $historialJuegos[$indice]["puntosX"] ) ) {
+                //Victoria de O
                 $juegosGanados = $juegosGanados + 1;
                 $puntosAcumulados = $puntosAcumulados + $historialJuegos [$indice]["puntosO"];
             } elseif (( $historialJuegos[$indice]["puntosO"] < $historialJuegos[$indice]["puntosX"] ) ) {
+                //Derrota de O
                 $juegosPerdidos = $juegosPerdidos + 1;
                 $puntosAcumulados = $puntosAcumulados; 
             } else {
+                //Empate
                 $juegosEmpatados = $juegosEmpatados + 1;
                 $puntosAcumulados = $puntosAcumulados + 1;
             }
         }
     }
-
+    //Se arma el arreglo con la información de las partidas jugadas por el jugador seleccionado.
     $resJugador = [
         "nombre" => $nombreJugador,
         "juegosGanados" => $juegosGanados,
@@ -135,6 +152,7 @@ function resumenJugador ($historialJuegos, $nombreJugador){
         "juegosEmpatados" => $juegosEmpatados,
         "puntosAcumulados" => $puntosAcumulados
     ];
+    //Se retorna dicho arreglo
     return $resJugador;
     
 }
