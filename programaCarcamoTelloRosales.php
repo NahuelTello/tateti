@@ -68,11 +68,15 @@ function buscaPrimerVictoria ($historialJuegos, $jugadorBuscado){
             if ($historialJuegos[$i]["puntosX"] > $historialJuegos[$i]["puntosO"]) {
                 $indice = $i;
                 $corte = false;
+            } else {
+                $i++;
             }
         } elseif ($jugadorBuscado == $historialJuegos[$i]["jugadorO"]) {
             if ($historialJuegos[$i]["puntosO"] > $historialJuegos[$i]["puntosX"]) {
                 $indice = $i;
                 $corte = false;
+            }else{
+                $i++;
             }
         }else {
         $i++;
