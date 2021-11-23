@@ -14,7 +14,7 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/************ PARTE NAHUEL ************/
+/************ PARTE TELLO ************/
 /**
  * funcion 2 <-- Explicacion 3
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
@@ -157,9 +157,9 @@ function resumenJugador ($historialJuegos, $nombreJugador){
     
 }
 
-/************ PARTE NAHUEL ************/
+/************ PARTE TELLO ************/
 
-/************ PARTE MARTINA ************/
+/************ PARTE ROSALES ************/
 /**
  * Función 1 <-- Explicación 3
  *  Historial precargado de partidas de tateti.
@@ -265,9 +265,9 @@ function cantidadVictorias ($historialJuegos){
     return $victorias;
 }
 
-/************ PARTE MARTINA ************/
+/************ PARTE ROSALES ************/
 
-/************ PARTE MILAGROS ************/
+/************ PARTE CÁRCAMO ************/
 
 /**
  * Funcion del inciso 8 --> "Explicacion 3"
@@ -349,7 +349,7 @@ function cmp ($a, $b) {
     return $resultadoComparacion ;
 }
 
-/************ PARTE MILAGROS ************/
+/************ PARTE CÁRCAMO ************/
 
 
 /**************************************/
@@ -358,10 +358,10 @@ function cmp ($a, $b) {
 
 //Declaración de variables:
 /** 
- * array $arregloPartidas, $partida, $resumen
- * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria
+ * array $arregloPartidas, $partida, $resumen, $odenDeO
+ * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria, $cantidadPartidas, $rangoMaximo
  * float $porcentajeJuegosGanados
- * String $jugador, $nombreJugador
+ * String $jugador, $nombreJugador, $simbolo, $nombreJugador,
 */
 
 //Inicialización de variables:
