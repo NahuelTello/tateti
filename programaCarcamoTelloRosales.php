@@ -159,10 +159,10 @@ function cargarJuegos (){
  */
 function agregarJuego ($historialJuegos, $juego){
     $nro =  count ($historialJuegos)+1;
-   $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
-   $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
-   $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
-   $historialJuegos[$nro]["puntosO"] = $juego ["puntosCirculo"];
+    $historialJuegos[$nro]["jugadorX"] = $juego ["jugadorCruz"];
+    $historialJuegos[$nro]["jugadorO"] = $juego ["jugadorCirculo"]; 
+    $historialJuegos[$nro]["puntosX"] = $juego ["puntosCruz"]; 
+    $historialJuegos[$nro]["puntosO"] = $juego ["puntosCirculo"];
     return $historialJuegos;
 }
 
@@ -178,7 +178,7 @@ function mostrarJuego($historialJuegos, $numero){
         if ($historialJuegos[$numero]["puntosX"] == $historialJuegos[$numero]["puntosO"]){
             $resultado = "empate";
         }else if ($historialJuegos[$numero]["puntosX"] < $historialJuegos[$numero]["puntosO"]){
-             $resultado = "ganó O";
+            $resultado = "ganó O";
         }else{
             $resultado = "ganó X";
         }
@@ -188,7 +188,8 @@ function mostrarJuego($historialJuegos, $numero){
         echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$numero]["puntosX"]. " puntos.\n";
         echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$numero]["puntosO"]. " puntos.\n";
         echo "**************************************** \n";
-    }
+}
+
 
 /** 
  * Función agregada, se usa en la opción 4 del menú.
@@ -345,7 +346,7 @@ do{
             $numeroPartida = trim(fgets(STDIN));
             $rangoMaximo = count ($arregloPartidas);
             if ($numeroPartida > 0 && $numeroPartida < $rangoMaximo){
-             mostrarJuego($arregloPartidas, $numeroPartida-1);
+            mostrarJuego($arregloPartidas, $numeroPartida-1);
             }else{
                 echo "Esa partida no existe. \n";
             }
