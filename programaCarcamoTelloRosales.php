@@ -359,44 +359,55 @@ function cmp ($a, $b) {
 //Declaración de variables:
 /** 
  * array $arregloPartidas, $partida, $resumen
- * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria
+ * int $opcion, $numeroPartida, $numVictoria, $cantidadPartidas
  * float $porcentajeJuegosGanados
- * String $jugador, $nombreJugador
+ * String $jugador, $nombreJugador, $simbolo
 */
 
-//Inicialización de variables:
+//Inicialización del arreglo con el historial de partidas:
 $arregloPartidas = cargarJuegos();
 //Proceso:
 
 // *********************** MENU ***************** //
+//Se utiliza una repetitiva indefinida interactiva, que realiza un ciclo como mínimo
 do{
-    $numeroMenu = seleccionarOpcion ();
-    $opcion = $numeroMenu;
+    //Se invoca a la función que imprime el menú de opciones en pantalla.
+    $opcion = seleccionarOpcion ();
     $cantidadPartidas = count ($arregloPartidas);
     switch ($opcion) {
         case 1:
+            //Opción jugar: se imprime el número de la partida en pantalla y se invoca a la función que ejecuta el juego del tateti
             echo "PARTIDA NUMERO ". ($cantidadPartidas + 1)."\n";
             $partida = jugar();
+            //Se invoca la función que imprime en pantalla el resultado de la partida 
             imprimirResultado($partida);
+            //Se cargan los datos de la nueva partida al historial del juego
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
             break;
         case 2:
+            //Mostrar un juego.
             echo "Ingrese el número de partida que desea ver: \n";
             $numeroPartida = trim(fgets(STDIN));
-            $rangoMaximo = count ($arregloPartidas);
-            if ($numeroPartida > 0 && $numeroPartida <= $rangoMaximo){
+            //Se verifica que la partida exista
+            if ($numeroPartida > 0 && $numeroPartida <= $cantidadPartidas){
+                //y se invoca a la función que imprime en pantalla los datos de la partida seleccionada.
                 mostrarJuego($arregloPartidas, $numeroPartida-1);
             }else{
                 echo "Esa partida no existe. \n";
             }
             break;
         case 3:
+            //Mostrar el primer juego ganador.
             echo "Ingrese el nombre del jugador que desea buscar: \n";
+            //Se transforma el string a mayúsculas y se invoca la función que busca la primer victoria del jugador seleccionado
             $jugador = strtoupper(trim(fgets(STDIN)));
             $numVictoria = buscaPrimerVictoria($arregloPartidas,$jugador);
+            //Según el retorno de la función utilizada
             if ($numVictoria > -1) {
+                //Se encontró una victoria y se retornó un índice perteneciente al array $arregloPartidas
                 mostrarJuego($arregloPartidas, $numVictoria);
             } else {
+                //No se encontró ningunca victoria y se retornó un -1
                 echo "El jugador ". $jugador. " no gano ningun juego.\n";
             }
             
@@ -404,15 +415,20 @@ do{
         case 4:
             //Mostrar porcentaje de Juegos ganados según símbolo
             echo "Ingrese el símbolo (X / O), cuyo porcentaje de victorias desea calcular: \n";
+            //Se invoca una función que verifica la validez del símbolo ingresado y convierte a mayúscula el string
             $simbolo = seleccionarSimbolo() ;
+            //Se invoca a la función que calcula el porcentaje de victorias del símbolo seleccionado respecto a las victorias totales
             $porcentajeJuegosGanados = porcentajeVictorias($arregloPartidas, $simbolo);
             echo "El porcentaje de victorias del simbolo ". $simbolo . " es ". $porcentajeJuegosGanados. "%\n";
             break;
         case 5:
             //Mostrar resumen de jugador
             echo "Ingrese el nombre del jugador: \n";
+            //Se convierte a mayúsculas el string
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
+            //Se invoca a la función que selecciona y almacena los datos del jugador seleccionado 
             $resumen = resumenJugador($arregloPartidas, $nombreJugador);
+            //Se imprimen en pantalla los datos almacenados en el arreglo retornado por la función
             echo " *********************************** \n";
             echo " Jugador: " .$resumen["nombre"]."\n";
             echo " Gano: ".$resumen["juegosGanados"]." juegos\n";
@@ -422,15 +438,21 @@ do{
             echo " *********************************** \n";
             break;
         case 6:
-            $odenDeO = ordenaJugadoresO($arregloPartidas);
+            // Mostrar listado de juegos Ordenado por jugador.
+            //Se invoca una función que ordena alfabéticamente las partidas respecto a los jugadores que utilizaron el O
+            //y se imprime en pantalla el arreglo reorganizado.
+           ordenaJugadoresO($arregloPartidas);
             break; 
         }
         if ($opcion <> 7){
+            //Se verifica si se desea continuar
         echo "¿Desea volver a ver el menú? (presione ENTER para continuar, presione 7 para salir)\n"; 
         $opcion = trim(fgets(STDIN));
         }
+        //La condición de corte es 7: Salir.
     }while ($opcion != 7);
     echo "Gracias por jugar! \n";
     echo "---------------------------------------------------------------------------------- \n";
+    //Fin del programa
 
 
