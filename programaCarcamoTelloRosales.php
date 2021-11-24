@@ -18,8 +18,7 @@ include_once("tateti.php");
 /**
  * funcion 2 <-- Explicacion 3
  * Muestra las opciones del menú de pantalla, donde se le solicita al usuario
- * una opcion valida y retorne el numero de la opcion. La ultima opcion del 
- * menu debe ser "Salir"
+ * una opcion valida y retorne el numero de la opcion.
  * @return int
  */
 function seleccionarOpcion() { 
