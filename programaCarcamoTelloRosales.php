@@ -184,7 +184,7 @@ function mostrarJuego($historialJuegos, $numero){
         }
         // se imprimen en pantalla los datos de la partida ingresada por el usuario
         echo "**************************************** \n";
-        echo "Juego TATETI: ". ($numero+1)." (". $resultado. ") \n";
+        echo "Juego TATETI: ". ($numero + 1)." (". $resultado. ") \n";
         echo "Jugador X: ". $historialJuegos[$numero]["jugadorX"]. " obtuvo ". $historialJuegos[$numero]["puntosX"]. " puntos.\n";
         echo "jugador O: ". $historialJuegos[$numero]["jugadorO"]. " obtuvo ". $historialJuegos[$numero]["puntosO"]. " puntos.\n";
         echo "**************************************** \n";
@@ -340,7 +340,7 @@ do{
             $partida = jugar();
             imprimirResultado($partida);
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
-            print_r($arregloPartidas);
+            print_r($arregloPartidas); //para ver si se carga la partida, despues BORRAR
             break;
         case 2:
             echo "Ingrese el número de partida que desea ver: \n";
