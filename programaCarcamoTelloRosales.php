@@ -45,6 +45,7 @@ function seleccionarOpcion() {
  * @param int $numMax . El num Max seria 7
  */
 function validarOpcion ($numMin, $numMax) {
+    //INT $opcionValida
     $opcionValida = solicitarNumeroEntre($numMin, $numMax) ; 
     //Invoco la funcion del programa "tateti" y me ahorro de hacer un if con la condicion de los rangos
     return $opcionValida ;
@@ -190,6 +191,7 @@ function cargarJuegos (){
  * @return array
  */
 function agregarJuego ($historialJuegos, $juego){
+    //INT $nro
     //Se utiliza la función count para conseguir el número de elementos almacenados en el arreglo $historialJuegos
     $nro =  count($historialJuegos);
     //Dicho número se utiliza para agregar un arreglo más al arreglo multidimensional $historialJuegos 
@@ -203,7 +205,7 @@ function agregarJuego ($historialJuegos, $juego){
 /**
  * Función 4 <-- Explicación 3
  * muestra los datos de determinada partida de tateti.
- * @param int $nroPartida
+ * @param int $numero
  * @param array $historialJuegos 
  */
 function mostrarJuego($historialJuegos, $numero){
@@ -234,7 +236,7 @@ function mostrarJuego($historialJuegos, $numero){
  * @return float
  */
 function porcentajeVictorias($historialJuegos, $simbolo){ 
-    // INT $victoriasSimbolo $victoriasTotales FLOAT $porcentaje
+    // INT $victoriasSimbolo $victoriasTotales, FLOAT $porcentaje
     //Se invoca a la función que contea las victorias por símbolo, y luego a la que contea las victorias totales.
     $victoriasSimbolo = victoriasDeSimbolos($historialJuegos, $simbolo);
     $victoriasTotales = cantidadVictorias($historialJuegos) ;
