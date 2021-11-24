@@ -362,13 +362,11 @@ function cmp ($a, $b) {
  * int $opcion, $numeroPartida, $numVictoria, $cantidadPartidas
  * float $porcentajeJuegosGanados
  * String $jugador, $nombreJugador, $simbolo
-<<<<<<< HEAD
  * array $arregloPartidas, $partida, $resumen, $odenDeO
  * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria, $cantidadPartidas, $rangoMaximo
  * float $porcentajeJuegosGanados
  * String $jugador, $nombreJugador, $simbolo, $nombreJugador,
-=======
->>>>>>> 45ac7b68e93a79048a4b75d8463307ec44de0271
+
 */
 
 //Inicialización del arreglo con el historial de partidas:
