@@ -33,8 +33,7 @@ function seleccionarOpcion() {
     6) Mostrar listado de juegos Ordenado por jugador O\n
     7) Salir \n";
     echo "Ingrese una opcion entre 1 y 7: " ;
-    $opcion = validarOpcion(1, 7); //Puedo poner como parametros formales directamente los numeros entre el rango que me pide?? 
-    /* Creo que esta bien asi, ya mandar directamente esos parametros asi despues los podes ingresar manualmente */
+    $opcion = validarOpcion(1, 7); 
     return $opcion ;
 }
 
@@ -46,7 +45,8 @@ function seleccionarOpcion() {
  * @param int $numMax . El num Max seria 7
  */
 function validarOpcion ($numMin, $numMax) {
-    $opcionValida = solicitarNumeroEntre($numMin, $numMax) ; //Invoco la funcion del programa "tateti" y me ahorro de hacer un if con la condicion de los rangos
+    $opcionValida = solicitarNumeroEntre($numMin, $numMax) ; 
+    //Invoco la funcion del programa "tateti" y me ahorro de hacer un if con la condicion de los rangos
     return $opcionValida ;
 }
 
@@ -358,17 +358,10 @@ function cmp ($a, $b) {
 
 //Declaración de variables:
 /** 
-<<<<<<< HEAD
  * array $arregloPartidas, $partida, $resumen
  * int $opcion, $numeroPartida, $numVictoria, $cantidadPartidas
  * float $porcentajeJuegosGanados
  * String $jugador, $nombreJugador, $simbolo
-=======
- * array $arregloPartidas, $partida, $resumen, $odenDeO
- * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria, $cantidadPartidas, $rangoMaximo
- * float $porcentajeJuegosGanados
- * String $jugador, $nombreJugador, $simbolo, $nombreJugador,
->>>>>>> 84c093b310fa56c1d1143ce8dc4713aab7e7779a
 */
 
 //Inicialización del arreglo con el historial de partidas:
