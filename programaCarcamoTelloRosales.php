@@ -358,15 +358,10 @@ function cmp ($a, $b) {
 
 //Declaración de variables:
 /** 
- * array $arregloPartidas, $partida, $resumen
- * int $opcion, $numeroPartida, $numVictoria, $cantidadPartidas
- * float $porcentajeJuegosGanados
- * String $jugador, $nombreJugador, $simbolo
  * array $arregloPartidas, $partida, $resumen, $odenDeO
- * int $numeroOpcion, $opcion, $numeroPartida, $numVictoria, $cantidadPartidas, $rangoMaximo
+ * int $numeroOpcion, $numeroPartida, $numVictoria, $cantidadPartidas, $rangoMaximo, $opcion
  * float $porcentajeJuegosGanados
- * String $jugador, $nombreJugador, $simbolo, $nombreJugador,
-
+ * String $jugador, $nombreJugador, $simbolo, $nombreJugador
 */
 
 //Inicialización del arreglo con el historial de partidas:
