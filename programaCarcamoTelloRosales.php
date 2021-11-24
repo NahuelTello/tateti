@@ -14,6 +14,32 @@ include_once("tateti.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+
+/**
+ * 
+ * Verifica si el jugador ingresado no existe
+ * 
+ * @params array $historialJuegos
+ * @param String $nombreJugador
+ * 
+ * @return boolean
+ */
+function existeJugador($historialJuegos,$nombreJugador){
+
+    $existe = false;
+    $i=0;
+    $longArreglo = count($historialJuegos);
+    while (($i < $longArreglo) && !$existe) {
+        if ($historialJuegos[$i]["jugadorX"] == $nombreJugador) {
+            $existe = true;
+        } elseif ($historialJuegos[$i]["jugadorO"] == $nombreJugador) {
+            $existe = true;
+        }
+        $i++;
+    }
+    return $existe;
+}
+
 /************ PARTE TELLO ************/
 /**
  * funcion 2 <-- Explicacion 3
@@ -179,6 +205,21 @@ function cargarJuegos (){
     $juegosPrecargados [8] = ["jugadorX" => "FACU", "jugadorO" => "GONZI", "puntosX" => 1, "puntosO" => 1];
     $juegosPrecargados [9] = ["jugadorX" => "ANTO", "jugadorO" => "GALA", "puntosX" => 0, "puntosO" => 2];
     $juegosPrecargados [10] = ["jugadorX" => "JUAN", "jugadorO" => "GALA", "puntosX" => 4, "puntosO" => 0];
+
+    
+    $juegosPrecargados = [];
+    $jg1 = ["jugadorX" => "AMARILIS", "jugadorO" => "MILOS",    "puntosX" => 1, "puntosO" => 1];
+    $jg2 = ["jugadorX" => "ZENDA",    "jugadorO" => "AMARILIS", "puntosX" => 3, "puntosO" => 0];
+    $jg3 = ["jugadorX" => "ZENDA",    "jugadorO" => "MILOS",    "puntosX" => 0, "puntosO" => 4];
+    $jg4 = ["jugadorX" => "CALIXTO",  "jugadorO" => "TRUMAN",   "puntosX" => 1, "puntosO" => 1];
+    $jg5 = ["jugadorX" => "AMARILIS", "jugadorO" => "MILOS",    "puntosX" => 5, "puntosO" => 0];
+    $jg6 = ["jugadorX" => "FEDORA",   "jugadorO" => "CALIXTO",  "puntosX" => 0, "puntosO" => 3];
+    $jg7 = ["jugadorX" => "TRUMAN",   "jugadorO" => "AMARILIS", "puntosX" => 4, "puntosO" => 0];
+    $jg8 = ["jugadorX" => "CALIXTO",  "jugadorO" => "TRUMAN",   "puntosX" => 1, "puntosO" => 1];
+    $jg9 = ["jugadorX" => "TRUMAN",   "jugadorO" => "FEDORA",   "puntosX" => 2, "puntosO" => 0];
+    $jg10 = ["jugadorX" => "MILOS",    "jugadorO" => "ZENDA",   "puntosX" => 1, "puntosO" => 1];
+
+    array_push($juegosPrecargados, $jg1, $jg2, $jg3, $jg4, $jg5, $jg6, $jg7, $jg8, $jg9, $jg10);
     return $juegosPrecargados;
 }
 
@@ -384,8 +425,6 @@ do{
             imprimirResultado($partida);
             //Se cargan los datos de la nueva partida al historial del juego
             $arregloPartidas = agregarJuego($arregloPartidas, $partida);
-            print_r($arregloPartidas); //para ver si se carga la partida, despues BORRAR
-
             break;
         case 2:
             //Mostrar un juego.
@@ -404,16 +443,19 @@ do{
             echo "Ingrese el nombre del jugador que desea buscar: \n";
             //Se transforma el string a mayúsculas y se invoca la función que busca la primer victoria del jugador seleccionado
             $jugador = strtoupper(trim(fgets(STDIN)));
-            $numVictoria = buscaPrimerVictoria($arregloPartidas,$jugador);
-            //Según el retorno de la función utilizada
-            if ($numVictoria > -1) {
-                //Se encontró una victoria y se retornó un índice perteneciente al array $arregloPartidas
-                mostrarJuego($arregloPartidas, $numVictoria);
+            if (existeJugador($arregloPartidas,$jugador)) {
+                $numVictoria = buscaPrimerVictoria($arregloPartidas,$jugador);
+                //Según el retorno de la función utilizada
+                if ($numVictoria > -1) {
+                    //Se encontró una victoria y se retornó un índice perteneciente al array $arregloPartidas
+                    mostrarJuego($arregloPartidas, $numVictoria);
+                } else {
+                    //No se encontró ningunca victoria y se retornó un -1
+                    echo "El jugador ". $jugador. " no gano ningun juego.\n";
+                }
             } else {
-                //No se encontró ningunca victoria y se retornó un -1
-                echo "El jugador ". $jugador. " no gano ningun juego.\n";
+                echo "El jugador ".$jugador . " no existe. \n";
             }
-            
             break;
         case 4:
             //Mostrar porcentaje de Juegos ganados según símbolo
@@ -429,16 +471,22 @@ do{
             echo "Ingrese el nombre del jugador: \n";
             //Se convierte a mayúsculas el string
             $nombreJugador = strtoupper(trim(fgets(STDIN))); 
-            //Se invoca a la función que selecciona y almacena los datos del jugador seleccionado 
-            $resumen = resumenJugador($arregloPartidas, $nombreJugador);
-            //Se imprimen en pantalla los datos almacenados en el arreglo retornado por la función
-            echo " *********************************** \n";
-            echo " Jugador: " .$resumen["nombre"]."\n";
-            echo " Gano: ".$resumen["juegosGanados"]." juegos\n";
-            echo " Perdio: ".$resumen["juegosPerdidos"]." juegos\n";
-            echo " Empato: ".$resumen["juegosEmpatados"]." juegos\n";
-            echo " Total de puntos acumulados: ".$resumen["puntosAcumulados"]." puntos"."\n";
-            echo " *********************************** \n";
+
+            if (existeJugador($arregloPartidas,$nombreJugador)) {
+                //Se invoca a la función que selecciona y almacena los datos del jugador seleccionado 
+                $resumen = resumenJugador($arregloPartidas, $nombreJugador);
+                //Se imprimen en pantalla los datos almacenados en el arreglo retornado por la función
+                echo " *********************************** \n";
+                echo " Jugador: " .$resumen["nombre"]."\n";
+                echo " Gano: ".$resumen["juegosGanados"]." juegos\n";
+                echo " Perdio: ".$resumen["juegosPerdidos"]." juegos\n";
+                echo " Empato: ".$resumen["juegosEmpatados"]." juegos\n";
+                echo " Total de puntos acumulados: ".$resumen["puntosAcumulados"]." puntos"."\n";
+                echo " *********************************** \n";
+            } else {
+                echo "El jugador ".$nombreJugador. " no existe. \n";
+            }
+            
             break;
         case 6:
             // Mostrar listado de juegos Ordenado por jugador.
